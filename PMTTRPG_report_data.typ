@@ -1,73 +1,91 @@
+#let print_blank = false
+
 #let character = (
-  name:        [Clark],
-  origin:      [Unknown],
-  workHistory: [Fixeur],
-  rank:        [2],
+  name:        [Kali],
+  origin:      [Backstreets of district 12],
+  workHistory: [Color Fixer],
+  rank:        [EX],
 
-  health:  [145], atkp:  [0],
-  stagger: [125], defp:  [0],
-  sanity:  [5], dodgp: [0],
-  light:   [5], level: [0],
+  health:  [200 / 200], atkp:  [7],
+  stagger: [56 / 56], defp:  [7],
+  sanity:  [30 / 30], dodgp: [5],
+  light:   [9 / 9], level: [17],
 
-  fortitude: [8], prudence: [2], justice:    [2],
-  charm:     [2], insight:  [2], temperance: [2],
+  fortitude: [10], prudence: [5], justice:    [10],
+  charm:     [3], insight:  [5], temperance: [7],
 
-  outfit: [Something that I found on the ground in june 985],
-  icon1: [0.25], icon4: [1.75],
-  icon2: [2], icon5: [5],
-  icon3: [3], icon6: [6],
-  effects: [#lorem(30)],
+  outfit: [Kali's Raincoat],
+  icon1: [1], icon4: [1],
+  icon2: [1], icon5: [1],
+  icon3: [0.5], icon6: [0.5],
+  effects: [- Retaliate : Gains a counter attack on combat start],
 
   weapons: ( (
-    name: [weapon1 that I got on a du rat], power: [D6 + 10],
-    effects: [AAA],
+    name: [Mimicry], power: [D20],
+    effects: [Base : Slash \
+              A metamorph weapon, able to change damage type depending on the skill used.],
   ), (
-    name: [weapon2], power: [2],
-    effects: [BBB],
+    name: [Kitchen gun], power: [D10],
+    effects: [Pierce \
+              A gun able to clean every dishes in a single bullet, which is all the ammo it has.],
   ), (
-    name: [weapon3], power: [3],
-    effects: [#lorem(20)],
+    name: [], power: [],
+    effects: [],
   ), (
-    name: [weapon4], power: [4],
-    effects: [DDD],
+    name: [], power: [],
+    effects: [],
   ), ),
 
-  inventory: [
-    #lorem(80)
-  ],
+  inventory: ("Your pain", "Your suffering","All your lunacy","And then a bit more", "How funny","A pocket Chesed","Another pocket Chesed", "According to the laws of aviation there should be no way for a bee to fly","Right ?"),
 
   skills: ( (
-    name: [Tiantui Star's Blade [天退星刀]], cost: [99],
-    effects: [#lorem(50)]
+    name: [Onrush], cost: [3],
+    effects: [If Kali staggers or kill target using this skill, reuse it on another random ennemy target]
   ), (
-    name: [skill2], cost: [2],
-    effects: [B]
+    name: [Upstanding Slash], cost: [2],
+    effects: [[BLUNT] If this did more than 8 damage, reduce the next cost by 1]
   ), (
-    name: [skill3], cost: [3],
-    effects: [C]
+    name: [Spear], cost: [2],
+    effects: [[PIERCE] If this did more than 8 damage, reduce the next cost by 1]
+  ),(
+    name: [Level Slash], cost: [2],
+    effects: [If this did more than 8 damage, restore 3 light and reduce next cost by 1]
   ), (
-    name: [skill4], cost: [4],
-    effects: [D]
+    name: [Greater Split : Vertical], cost: [5],
+    effects: [Rolls twice for clashing & damage]
+  ),(
+    name: [Greater Split : Horizontal], cost: [7],
+    effects: [Mass summation. Rolls twice for clashing & damage]
   ), ),
 
-  notes: [
-    #lorem(211)
-  ],
+  notes: (
+    "Speed 3 - Can attack 3 times per turn at different speed",
+    "The Strongest - The lowest speed each turn becomes infinite",
+    "Gebura's Prowess - Gets 1 power up for every 2 speed difference, up to 5",
+    "The Red Mist - All dice gains 2 power"
+  ),
 )
 
+#character.inventory.len()
+
+// #list.len()
+// #list.at(1)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -------------------------------------- DO NOT MODIFY DATA BELLOW THIS POINT -------------------------------------- //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #import "elements.typ":*
+#if print_blank {
+  character = empty_character
+}
 #set page(margin: 0cm)
 #set text(size: 15pt)
 #set page(background: image("PMTTRPG_report_recto.png"))
-#let backgroundTop = 80pt
-#place(dx: 32pt, dy: backgroundTop, character.at("name"))
-#place(dx: 174pt, dy: backgroundTop, character.at("origin"))
-#place(dx: 332pt, dy: backgroundTop, character.at("workHistory"))
-#place(dx: 498pt, dy: backgroundTop, character.at("rank"))
+#let backgroundTop = 77.5pt
+#place(dx: 32pt, dy: backgroundTop, Name(character.name))
+#place(dx: 174pt, dy: backgroundTop, Origin(character.origin))
+#place(dx: 330pt, dy: backgroundTop, Work(character.workHistory))
+#place(dx: 498pt, dy: backgroundTop, Rank(character.rank))
 
 #let stats1Left = 33pt
 #let stats3Left = 100%-39.9pt-24pt-8pt
@@ -117,16 +135,16 @@
   let y = calc.div-euclid(i, 2)
   let x = calc.rem-euclid(i, 2) * 2
   place(dx: weaponsLeft + weaponsDx * x, dy: weaponsTop + weaponsDy*y + -3pt, WeaponName(weapon.at("name")))
-  place(dx: weaponsLeft + weaponsDx * x + 118pt, dy: weaponsTop + weaponsDy*y + -3pt, WeaponRoll(weapon.at("power")))
+  place(dx: weaponsLeft + weaponsDx * x + 113pt, dy: weaponsTop + weaponsDy*y + -3pt, WeaponRoll(weapon.at("power")))
   place(dx: weaponsLeft + weaponsDx * x, dy: weaponsTop + weaponsDy*y + 27pt, WeaponDesc(weapon.at("effects")))
   i += 1
 }
 
-#place(dx: 30pt, dy: 740pt, Inventory(character.at("inventory")))
+#place(dx: 30pt, dy: 740pt, Inventory(character.inventory))
 
 #pagebreak()
 
-#set page(background: image("PMTTRPG_report verso.png"))
+#set page(background: image("PMTTRPG_report_verso.png"))
 
 #let skillsLeft = 33pt
 #let skillsTop = 48pt
@@ -141,4 +159,4 @@
   i += 1
 }
 
-#place(dx: 32pt, dy: 498pt, Notes(character.at("notes")))
+#place(dx: 31pt, dy: 700pt, Notes(character.at("notes")))
