@@ -27,6 +27,7 @@
 #let column-breaker(text-size,item-per-line,list) = {
   set text(size:text-size)
   let cut = calc.ceil(list.len()/item-per-line)
+  cut = calc.max(cut,1)
   resize-text(columns:cut+0,columns(cut,[#array-to-list(list)]))
 }
 
@@ -154,9 +155,7 @@
     effects: [],
   ), ),
 
-  inventory: [
-    
-  ],
+  inventory: (),
 
   skills: ( (
     name: [], cost: [],
@@ -172,7 +171,5 @@
     effects: []
   ), ),
 
-  notes: [
-    
-  ],
+  notes: (),
 )

@@ -1,4 +1,4 @@
-#let print_blank = false
+#let print_blank = true
 
 #let character = (
   name:        [Kali],
@@ -65,8 +65,6 @@
     "The Red Mist - All dice gains 2 power"
   ),
 )
-
-#character.inventory.len()
 
 // #list.len()
 // #list.at(1)
