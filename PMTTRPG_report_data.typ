@@ -50,12 +50,12 @@
 #let combatDx = 84.5pt
 #let combatDy = 39.5pt
 #place(dx: 85pt, dy: 405pt, ArmorName(character.at("outfit")))
-#place(dx: combatLeft + 0*combatDx, dy: combatTop + 0*combatDy, ArmorStat(character.at("icon1")))
-#place(dx: combatLeft + 0*combatDx, dy: combatTop + 1*combatDy, ArmorStat(character.at("icon2")))
-#place(dx: combatLeft + 0*combatDx, dy: combatTop + 2*combatDy, ArmorStat(character.at("icon3")))
-#place(dx: combatLeft + 1*combatDx, dy: combatTop + 0*combatDy, ArmorStat(character.at("icon4")))
-#place(dx: combatLeft + 1*combatDx, dy: combatTop + 1*combatDy, ArmorStat(character.at("icon5")))
-#place(dx: combatLeft + 1*combatDx, dy: combatTop + 2*combatDy, ArmorStat(character.at("icon6")))
+#place(dx: combatLeft + 0*combatDx, dy: combatTop + 0*combatDy, ArmorStat(character.at("slashHP")))
+#place(dx: combatLeft + 0*combatDx, dy: combatTop + 1*combatDy, ArmorStat(character.at("pierceHP")))
+#place(dx: combatLeft + 0*combatDx, dy: combatTop + 2*combatDy, ArmorStat(character.at("bluntHP")))
+#place(dx: combatLeft + 1*combatDx, dy: combatTop + 0*combatDy, ArmorStat(character.at("slashST")))
+#place(dx: combatLeft + 1*combatDx, dy: combatTop + 1*combatDy, ArmorStat(character.at("pierceST")))
+#place(dx: combatLeft + 1*combatDx, dy: combatTop + 2*combatDy, ArmorStat(character.at("bluntST")))
 #place(dx: 33pt, dy: 573pt, ArmorEffects(character.at("effects")))
 
 #let weaponsLeft = 235pt

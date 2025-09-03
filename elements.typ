@@ -120,3 +120,9 @@
 #let Notes(list) = {
   block(width:89%,height:13%,column-breaker(15pt, 6, list))
 }
+
+#let DMGTYPE = (
+  SLASH:0,
+  PIERCE:1,
+  BLUNT:2
+)

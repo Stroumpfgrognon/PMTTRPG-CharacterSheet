@@ -14,9 +14,9 @@
   charm:     [], insight:  [], temperance: [],
 
   outfit: [],
-  icon1: [], icon4: [],
-  icon2: [], icon5: [],
-  icon3: [], icon6: [],
+  slashHP: [], slashST: [],
+  pierceHP: [], pierceST: [],
+  bluntHP: [], bluntST: [],
   effects: [],
 
   weapons: ( (
@@ -67,9 +67,9 @@
   charm:     [1], insight:  [3], temperance: [2],
 
   outfit: [Triple R Armor (Rat)],
-  icon1: [1], icon4: [0.5],
-  icon2: [1], icon5: [1],
-  icon3: [1], icon6: [1],
+  slashHP: 1, slashST: 0.5,
+  pierceHP: 1, pierceST: 1,
+  bluntHP: 1, bluntST: 1,
   effects: [Overcharge - Max Charge count becomes 20],
 
   weapons: ( (
@@ -120,9 +120,9 @@
   charm:     [1], insight:  [3], temperance: [0],
 
   outfit: [Triple R Armor (Ram)],
-  icon1: [1], icon4: [1],
-  icon2: [1], icon5: [1],
-  icon3: [1], icon6: [0.5],
+  slashHP: 1, slashST: 1,
+  pierceHP: 1, pierceST: 1,
+  bluntHP: 1, bluntST: 0.5,
   effects: [Overcharge - Max Charge count becomes 20],
 
   weapons: ((  // name, cost, effects
@@ -168,9 +168,9 @@
   charm:     [1], insight:  [4], temperance: [2],
 
   outfit: [Triple R Armor (Reindeer)],
-  icon1: [1], icon4: [1],
-  icon2: [1], icon5: [0.5],
-  icon3: [1], icon6: [1],
+  slashHP: 1, slashST: 1,
+  pierceHP: 1, pierceST: 0.5,
+  bluntHP: 1, bluntST: 1,
   effects: [Overcharge - Max Charge count becomes 20],
 
   weapons: ((
@@ -213,9 +213,9 @@
   charm:     [3], insight:  [5], temperance: [7],
 
   outfit: [Kali's Raincoat],
-  icon1: [1], icon4: [1],
-  icon2: [1], icon5: [1],
-  icon3: [0.5], icon6: [0.5],
+  slashHP: 1, slashST: 1,
+  pierceHP: 1, pierceST: 1,
+  bluntHP: 1, bluntST: 1,
   effects: [- Retaliate : Gains a counter attack on combat start],
 
   weapons: ( (
