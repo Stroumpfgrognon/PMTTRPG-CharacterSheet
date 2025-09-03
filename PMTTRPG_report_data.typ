@@ -1,73 +1,9 @@
-#let print_blank = true
+#import "premade.typ":*
 
-#let character = (
-  name:        [Kali],
-  origin:      [Backstreets of district 12],
-  workHistory: [Color Fixer],
-  rank:        [EX],
+#let print_blank = false
 
-  health:  [200 / 200], atkp:  [7],
-  stagger: [56 / 56], defp:  [7],
-  sanity:  [30 / 30], dodgp: [5],
-  light:   [9 / 9], level: [17],
+#let character = Diane
 
-  fortitude: [10], prudence: [5], justice:    [10],
-  charm:     [3], insight:  [5], temperance: [7],
-
-  outfit: [Kali's Raincoat],
-  icon1: [1], icon4: [1],
-  icon2: [1], icon5: [1],
-  icon3: [0.5], icon6: [0.5],
-  effects: [- Retaliate : Gains a counter attack on combat start],
-
-  weapons: ( (
-    name: [Mimicry], power: [D20],
-    effects: [Base : Slash \
-              A metamorph weapon, able to change damage type depending on the skill used.],
-  ), (
-    name: [Kitchen gun], power: [D10],
-    effects: [Pierce \
-              A gun able to clean every dishes in a single bullet, which is all the ammo it has.],
-  ), (
-    name: [], power: [],
-    effects: [],
-  ), (
-    name: [], power: [],
-    effects: [],
-  ), ),
-
-  inventory: ("Your pain", "Your suffering","All your lunacy","And then a bit more", "How funny","A pocket Chesed","Another pocket Chesed", "According to the laws of aviation there should be no way for a bee to fly","Right ?"),
-
-  skills: ( (
-    name: [Onrush], cost: [3],
-    effects: [If Kali staggers or kill target using this skill, reuse it on another random ennemy target]
-  ), (
-    name: [Upstanding Slash], cost: [2],
-    effects: [[BLUNT] If this did more than 8 damage, reduce the next cost by 1]
-  ), (
-    name: [Spear], cost: [2],
-    effects: [[PIERCE] If this did more than 8 damage, reduce the next cost by 1]
-  ),(
-    name: [Level Slash], cost: [2],
-    effects: [If this did more than 8 damage, restore 3 light and reduce next cost by 1]
-  ), (
-    name: [Greater Split : Vertical], cost: [5],
-    effects: [Rolls twice for clashing & damage]
-  ),(
-    name: [Greater Split : Horizontal], cost: [7],
-    effects: [Mass summation. Rolls twice for clashing & damage]
-  ), ),
-
-  notes: (
-    "Speed 3 - Can attack 3 times per turn at different speed",
-    "The Strongest - The lowest speed each turn becomes infinite",
-    "Gebura's Prowess - Gets 1 power up for every 2 speed difference, up to 5",
-    "The Red Mist - All dice gains 2 power"
-  ),
-)
-
-// #list.len()
-// #list.at(1)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -------------------------------------- DO NOT MODIFY DATA BELLOW THIS POINT -------------------------------------- //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
