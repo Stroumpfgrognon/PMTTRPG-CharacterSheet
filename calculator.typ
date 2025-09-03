@@ -1,9 +1,9 @@
 #import "premade.typ": *
 #import "elements.typ": DMGTYPE
 
-#set page(paper: "a10", fill: black) ; #set text(fill: white)
+#set page(paper: "a10", fill: black, margin: 0.1cm); #set text(fill: white, size: 9pt); #set align(center + horizon);
 
-#let character_attacked = Clark
+#let character_attacked = Kali
 
 #let damage_type = DMGTYPE.BLUNT
 
@@ -25,6 +25,5 @@
   stagger_dealt = stagger_dealt * character_attacked.bluntST
 }
 
-
-#emph[#character_attacked.name] got \ #text(fill: red)[#damage_dealt HP] damage &\ #text(fill: yellow)[#stagger_dealt ST] damage
+#emph[#character_attacked.name] received \ #text(fill: red)[#damage_dealt HP] damage &\ #text(fill: yellow)[#stagger_dealt ST] damage
 
