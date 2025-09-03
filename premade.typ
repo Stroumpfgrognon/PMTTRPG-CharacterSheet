@@ -215,7 +215,7 @@
   outfit: [Kali's Raincoat],
   slashHP: 1, slashST: 1,
   pierceHP: 1, pierceST: 1,
-  bluntHP: 1, bluntST: 1,
+  bluntHP: 0.5, bluntST: 0.5,
   effects: [- Retaliate : Gains a counter attack on combat start],
 
   weapons: ( (
