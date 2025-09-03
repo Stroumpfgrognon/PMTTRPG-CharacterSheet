@@ -27,8 +27,8 @@
 #let stats13Dy = 60.5pt
 #place(dx: stats1Left, dy: stats13Top + 0*stats13Dy, CalculatedStats( character.at("health")))
 #place(dx: stats1Left, dy: stats13Top + 1*stats13Dy, CalculatedStats( character.at("stagger")))
-#place(dx: stats1Left, dy: stats13Top + 2*stats13Dy, CalculatedStats( character.at("sanity")))
-#place(dx: stats1Left, dy: stats13Top + 3*stats13Dy, CalculatedStats(character.at("light")))
+#place(dx: stats1Left, dy: stats13Top + 2*stats13Dy, CalculatedStats( character.at("Sanity")))
+#place(dx: stats1Left, dy: stats13Top + 3*stats13Dy, CalculatedStats(character.at("Light")))
 #place(dx: stats3Left, dy: stats13Top + 0*stats13Dy, CalculatedStats( character.at("atkp")))
 #place(dx: stats3Left, dy: stats13Top + 1*stats13Dy, CalculatedStats( character.at("defp")))
 #place(dx: stats3Left, dy: stats13Top + 2*stats13Dy, CalculatedStats( character.at("dodgp")))
