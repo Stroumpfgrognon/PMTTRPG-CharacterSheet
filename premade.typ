@@ -58,13 +58,13 @@
   workHistory: [Intelligence gathering],
   rank:        [2],
 
-  health:  [104], atkp:  [2],
-  stagger: [32], defp:  [2],
-  Sanity:  [24], dodgp: [3],
-  Light:   [5], level: [3],
+  health:  104, atkp:  2,
+  stagger: 32, defp:  2,
+  Sanity:  24, dodgp: 3,
+  Light:   5, level: 3,
 
-  fortitude: [2], prudence: [3], justice:    [1],
-  charm:     [1], insight:  [3], temperance: [2],
+  fortitude: 2, prudence: 3, justice:    1,
+  charm:     1, insight:  3, temperance: 2,
 
   outfit: [Triple R Armor (Rat)],
   slashHP: 1, slashST: 0.5,
@@ -111,13 +111,13 @@
   workHistory: [None],
   rank:        [2],
 
-  health:  [120], atkp:  [2],
-  stagger: [32], defp:  [0],
-  Sanity:  [24], dodgp: [3],
-  Light:   [5], level: [3],
+  health:  120, atkp:  2,
+  stagger: 32, defp:  0,
+  Sanity:  24, dodgp: 3,
+  Light:   5, level: 3,
 
-  fortitude: [4], prudence: [3], justice:    [1],
-  charm:     [1], insight:  [3], temperance: [0],
+  fortitude: 4, prudence: 3, justice:    1,
+  charm:     1, insight:  3, temperance: 0,
 
   outfit: [Triple R Armor (Ram)],
   slashHP: 1, slashST: 1,
@@ -159,13 +159,13 @@
   workHistory: [Espionnage],
   rank:        [2],
 
-  health:  [88], atkp:  [2],
-  stagger: [32], defp:  [2],
-  Sanity:  [24], dodgp: [4],
-  Light:   [5], level: [3],
+  health:  88, atkp:  2,
+  stagger: 32, defp:  2,
+  Sanity:  24, dodgp: 4,
+  Light:   5, level: 3,
 
-  fortitude: [0], prudence: [3], justice:    [2],
-  charm:     [1], insight:  [4], temperance: [2],
+  fortitude: 0, prudence: 3, justice:    2,
+  charm:     1, insight:  4, temperance: 2,
 
   outfit: [Triple R Armor (Reindeer)],
   slashHP: 1, slashST: 1,
@@ -204,13 +204,13 @@
   workHistory: [Color Fixer],
   rank:        [EX],
 
-  health:  [200 / 200], atkp:  [7],
-  stagger: [56 / 56], defp:  [7],
-  Sanity:  [30 / 30], dodgp: [5],
-  Light:   [9 / 9], level: [17],
+  health:  [200 / 200], atkp:  7,
+  stagger: [56 / 56], defp:  7,
+  Sanity:  [30 / 30], dodgp: 5,
+  Light:   [9 / 9], level: 17,
 
-  fortitude: [10], prudence: [5], justice:    [10],
-  charm:     [3], insight:  [5], temperance: [7],
+  fortitude: 10, prudence: 5, justice:    10,
+  charm:     3, insight:  5, temperance: 7,
 
   outfit: [Kali's Raincoat],
   slashHP: 1, slashST: 1,
