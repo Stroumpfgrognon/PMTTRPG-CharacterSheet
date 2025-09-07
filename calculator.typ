@@ -1,11 +1,11 @@
 #import "premade.typ": *
-#import "elements.typ": DMGTYPE
+#import "elements.typ": ATKTYPE
 
 #set page(paper: "a10", fill: black, margin: 0.1cm); #set text(fill: white, size: 9pt); #set align(center + horizon);
 
 #let character_attacked = Kali
 
-#let damage_type = DMGTYPE.BLUNT
+#let damage_type = ATKTYPE.Blunt
 
 #let damage_sent = 112
 

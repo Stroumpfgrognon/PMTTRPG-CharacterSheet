@@ -1,12 +1,14 @@
-#import "@preview/suiji:0.4.0": *
 #import "premade.typ": *
-#set page(paper: "a9", fill: black, margin: 0.1cm); #set text(fill: white, size: 9pt); #set align(center + horizon);
 
 #let turn = 1
 
 #let characters = (Juline,Clark, Kali, Diane)
 
 // ------------------------------------------------------------------
+
+#set page(paper: "a9", fill: black, margin: 0.1cm); #set text(fill: white, size: 9pt); #set align(center + horizon);
+
+#import "@preview/suiji:0.4.0": *
 #let character_names = ()
 #let speeds = ()
 

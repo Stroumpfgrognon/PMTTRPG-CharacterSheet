@@ -2,7 +2,7 @@
 
 #let print_blank = false
 
-#let character = Diane
+#let character = Zilu
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -------------------------------------- DO NOT MODIFY DATA BELLOW THIS POINT -------------------------------------- //
@@ -12,6 +12,23 @@
 #if print_blank {
   character = empty_character
 }
+
+#show: body => {
+  for pair in EFFECTS.pairs() {
+    body = {
+      show pair.last(): strong
+      body
+    }
+  }
+  for pair in ATKTYPE.pairs(){
+    body = {
+      show pair.first(): emph
+      body
+    }
+  }
+  body
+}
+
 #set page(margin: 0cm)
 #set text(size: 15pt)
 #set page(background: image("PMTTRPG_report_recto.png"))

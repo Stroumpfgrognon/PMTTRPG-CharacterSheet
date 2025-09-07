@@ -1,3 +1,4 @@
+#import "elements.typ":(Hit,ClashW,ClashL,Gain,Inflict,EFFECTS,CondEffect,Use )
 
 #let empty_character = (
   name:        [],
@@ -96,7 +97,7 @@
     effects: [Defense skill. Gain +8 Charge count]
   ),(
     name: [Slippery tail], cost: [2],
-    effects: [Dodge skill. On dodge, gains 1 Charge count and restore 1 Light. Can consume 3 Charge count to gain +1 aggro (attracts attacks) (repeatable)]
+    effects: [Dodge skill. On dodge, gains 1 Charge count and restore 1 Light. Can consume 3 Charge count to gain +1 Aggro (attracts attacks) (repeatable)]
   ), (
     name: [Kingless and unbound], cost: [4],
     effects: [Unopposed attack. Inflicts 5 bleed. For each 10 Charge count on self, consume 10 Charge count and recycle attack]
@@ -261,4 +262,138 @@
     "The Strongest - The lowest speed each turn becomes infinite",
     "The Red Mist - All dice gains 2 power"
   ),
+)
+
+#let MaoHeish = (
+  name:        [Heishou Mahou],
+  origin:      [H Corp's Nest],
+  workHistory: [Protection],
+  rank:        [3],
+
+  health:  136, atkp:  3,
+  stagger: 40, defp:  2,
+  Sanity:  24, dodgp: 3,
+  Light:   6, level: 6,
+
+  fortitude: 4, prudence: 3, justice:    4,
+  charm:     2, insight:  3, temperance: 2,
+
+  outfit: [Mao Heishou Armor],
+  slashHP: 1.25, slashST: 1.25,
+  pierceHP: 1, pierceST: 1,
+  bluntHP: 0.75, bluntST: 0.75,
+  effects: [- Take advantage : Gain 1 Haste next turn on clash win
+  - Variable defense : 0.5/1/2 for alternative],
+
+  weapons: ((
+    name: [Mao katana sword (Slash)], power: [D12],
+    effects: [- #Hit(Inflict(EFFECTS.Rupture,2))],
+  ),),
+
+  inventory: (),
+
+  skills: ( ( // name, cost, effects
+    name: [Pursuit], cost: [0],
+    effects: [
+      #CondEffect([Target has 2+ #EFFECTS.Rupture], [Clash Power +1])
+    - #Hit[#Inflict(EFFECTS.Rupture,2)]
+    - Restore 1 Light
+    ]
+  ), (
+    name: [Overwhelm], cost: [2],
+    effects: [This skill doesn't trigger Rupture.
+    - #Hit(Inflict(EFFECTS.Rupture,1))
+    - Recycle this attack Speed / 4 times]
+  ),(
+    name: [Umbra Strike], cost: [3],
+    effects: [#CondEffect([Self is faster than target],[+1 Power for every 2 Speed difference (max 3)])
+    #CondEffect([Target has 4+ Rupture],[Gain +1 Power])
+    - #ClashW([#Inflict(EFFECTS.Rupture,2)])
+    - #Hit([#Inflict((EFFECTS.Rupture,EFFECTS.DeathriteHaste),(5,3)) and #Gain(EFFECTS.StriderMao,3)])
+    // Inflict 5 #EFFECTS.Rupture and 1 #EFFECTS.DeathriteHaste
+    ]
+  ),(
+    name: [Windup], cost: [0],
+    effects: [Counter skill (Dodge)
+    - #ClashW(Gain(EFFECTS.Haste,2))]
+  ),
+  ),
+
+  notes: ([Vigor[Mao] - Inflict +1 Rupture to ennemies with lower speed],[Strider[Mao] - On hit with ennemies with Deathrite[Haste], inflict +1 Rupture (3 times per turn)]),
+)
+
+#let Zilu = (
+  name:        [Zilu],
+  origin:      [H Corp's Nest],
+  workHistory: [Pinky Member - Blade of The East],
+  rank:        [5],
+
+  health:  400, atkp:  5,
+  stagger: 80, defp:  5,
+  Sanity:  40, dodgp: 5,
+  Light:   8, level: 12,
+
+  fortitude: 6, prudence: 4, justice:    7,
+  charm:     3, insight:  5, temperance: 5,
+
+  outfit: [Zilu's Armor],
+  slashHP: 1.25, slashST: 1.25,
+  pierceHP: 1, pierceST: 1,
+  bluntHP: 0.5, bluntST: 0.5,
+  effects: [- Take advantage : Gain 1 Haste next turn on clash win],
+
+  weapons: ((
+    name: [Mao Enhanced katana sword], power: [D16],
+    effects: [(Slash)
+    - #Hit(Inflict(EFFECTS.Rupture,4))],
+  ),(
+    name: [Tianjiu Star's Blade (Slash)], power: [D100],
+    effects: [(Slash)
+    - #Hit(Inflict(EFFECTS.Rupture,50))],
+  )),
+
+  inventory: (),
+
+  skills: ( ( // name, cost, effects
+    name: [Startling Strike], cost: [0],
+    effects: [
+      #CondEffect([Target has 5+ #EFFECTS.Rupture], [Clash Power +1])
+    - #Hit[#Inflict(EFFECTS.Rupture,3)]
+    - Restore 2 Light
+    ]
+  ), (
+    name: [Perforating kill], cost: [1],
+    effects: [
+      #CondEffect([Target has 5+ #EFFECTS.Rupture], [Power +1])
+    - #Use(Gain(EFFECTS.StriderMao,3))
+    - #Hit(Inflict(EFFECTS.Rupture,2))
+    - #CondEffect([Target has #EFFECTS.DeathriteHaste],[Gain 1 Haste])]
+  ),(
+    name: [Etching Strike], cost: [2],
+    effects: [
+    #CondEffect([Target has 4+ Rupture],[Gain +1 Power])
+    - #Hit(Inflict((EFFECTS.Rupture,EFFECTS.DeathriteHaste),(6,3)))
+    ]
+  ),(
+    name: [Cursewrit Butcherblade - Blinkstep], cost: [4],
+    effects: [Gain 1 Power for every 2 Rupture on target (max 10). If Target has #EFFECTS.DeathriteHaste, inflict +30% damage.
+    - #Hit(Inflict(EFFECTS.Rupture,10))]
+  ),(
+    name: [Incomplete Seal Release: \<Tianjiu Star's Blade>], cost: [5],
+    effects: [+20% bonus damage for every 2 Speed difference with Target (max 60%) \
+    Gain 1 Power for every 2 Rupture on target (max 10) \
+    Attacks with Tianjiu Star's Blade.
+    - #Hit(Inflict((EFFECTS.Rupture,EFFECTS.DeathriteFissure),(7,3)))]
+  ),(
+    name: [Cursewrit], cost: [0],
+    effects: [Counter skill (Dodge). If Target has #EFFECTS.DeathriteHaste, double Rupture infliction.
+    - #Hit(Inflict(EFFECTS.Rupture,4))]
+  ),
+  ),
+
+  notes: (
+    [Vigor[Mao] - Inflict +1 Rupture to ennemies with lower speed],
+    [Strider[Mao] - On hit with ennemies with Deathrite[Haste], inflict +1 Rupture (3 times per turn)],
+    [Speed 3 - 3 more attacks per turn],[Dominator[Mao] - If Speed is greater than target by 2 or more, gain +1 Power],
+    [Shin (心) Radiance - Gain 100 Shield on Turn Start, HP cannot get below 1 if attacked without Mang]),
 )

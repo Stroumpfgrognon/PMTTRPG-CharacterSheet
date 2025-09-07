@@ -121,9 +121,79 @@
   block(width: 89%, height: 13%, column-breaker(15pt, 6, list))
 }
 
-#let DMGTYPE = (
-  SLASH: 0,
-  PIERCE: 1,
-  BLUNT: 2,
-  RAW: 3,
+#let ATKTYPE = (
+  Slash: 0,
+  Pierce: 1,
+  Blunt: 2,
+  Raw: 3,
+  Defense: 4,
+  Dodge: 5,
 )
+
+#let EFFECTS = (
+  Rupture: "Rupture",
+  Bleed: "Bleed",
+  Burn: "Burn",
+  Tremor: "Tremor",
+  Frostbite: "Frostbite",
+  Charge: "Charge",
+  Sinking: "Sinking",
+  Haste: "Haste",
+  Aggro: "Aggro",
+  ClashPower:"Clash Power",
+  Power:"Power",
+  Light: "Light",
+  DeathriteHaste: "Deathrite[Haste]",
+  DeathriteFissure: "Deathrite[Fissure]",
+  StriderMao:"Strider[Mao]"
+)
+
+#let ClashW(effect) = {
+  [\[_On Clash Win_\] : #effect]
+}
+
+#let ClashL(effect) = {
+  [\[_On Clash Loss_\] : #effect]
+}
+
+#let Hit(effect) = {
+  [\[_On Hit_\] : #effect]
+}
+
+#let Use(effect) = {
+  [\[_On Use_\] : #effect]
+}
+
+#let Gain(effect, count) = {
+  if type(effect) == array {
+    [Gain ]
+    for i in range(effect.len() - 2) {
+      [#count.at(i) #effect.at(i), ]
+    }
+    let i = effect.len() - 2
+    if i >= 0 {
+      [#count.at(i) #effect.at(i) ]
+      i += 1
+    }
+    [and #count.at(i) #effect.at(i)]
+  } else [Gain #count #effect]
+}
+
+#let Inflict(effect, count) = {
+  if type(effect) == array {
+    [Inflict ]
+    for i in range(effect.len() - 2) {
+      [#count.at(i) #effect.at(i), ]
+    }
+    let i = effect.len() - 2
+    if i >= 0 {
+      [#count.at(i) #effect.at(i) ]
+      i += 1
+    }
+    [and #count.at(i) #effect.at(i)]
+  } else [Inflict #count #effect]
+}
+
+#let CondEffect(cond, effect) = {
+  [If #cond : #effect \ ]
+}
