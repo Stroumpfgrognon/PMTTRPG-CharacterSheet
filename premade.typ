@@ -397,3 +397,114 @@
     [Speed 3 - 3 more attacks per turn],[Dominator[Mao] - If Speed is greater than target by 2 or more, gain +1 Power],
     [Shin (心) Radiance - Gain 100 Shield on Turn Start, HP cannot get below 1 if attacked without Mang]),
 )
+
+#let Tri-Axe = (
+  name:        [Tri-Axe Member],
+  origin:      [H Corp's Backstreets],
+  workHistory: [Syndicate work],
+  rank:        [2],
+
+  health:  80, atkp:  1,
+  stagger: 30, defp:  1,
+  Sanity:  15, dodgp: 1,
+  Light:   5, level: 4,
+
+  fortitude: 3, prudence: 3, justice:    2,
+  charm:     3, insight:  2, temperance: 2,
+
+  outfit: [Tri-Axe Suit],
+  slashHP: 2, slashST: 2,
+  pierceHP: 0.8, pierceST: 0.8,
+  bluntHP: 1, bluntST: 1,
+  effects: [],
+
+  weapons: ((
+    name: [Tri-Axe], power: [D8],
+    effects: [- #Hit(Inflict(EFFECTS.Bleed,2))],
+  ),),
+
+  inventory: (),
+
+  skills: ( ( // name, cost, effects
+    name: [Unmannerly Attack], cost: [0],
+    effects: [
+      #Use(Gain(EFFECTS.Haste,1))
+      - #Hit(Inflict(EFFECTS.Bleed,2))
+    ]
+  ),( // name, cost, effects
+    name: [Tendon Slice], cost: [2],
+    effects: [
+      #CondEffect([Speed higher than target],[Power +2])
+      #CondEffect([Target has 3+ Bleed],[Power +1])
+      #Use(Gain(EFFECTS.Haste,1))
+      - #Hit(Inflict((EFFECTS.Bleed,EFFECTS.Bind),(4,2)))
+    ]
+  ),( // name, cost, effects
+    name: [Messy Attack], cost: [3],
+    effects: [
+      #Use[At 7+ Speed : Power +1]\
+      #Use[If target has 4+ Bleed : Power +1] \
+      #ClashW([Inflict +4 Bleed])\
+      - #Hit(Inflict(EFFECTS.Bleed,4))
+    ]
+  ),
+  ),
+
+  notes: ([Measured clashes : On _Clash Win_, #Gain(EFFECTS.Haste,2)],),
+)
+
+#let HCorpDefender = (
+  name:        [H Corp Defender],
+  origin:      [H Corp's Backstreets],
+  workHistory: [Unknown],
+  rank:        [1],
+
+  health:  80, atkp:  1,
+  stagger: 30, defp:  1,
+  Sanity:  15, dodgp: 1,
+  Light:   5, level: 4,
+
+  fortitude: 1, prudence: 2, justice:    1,
+  charm:     2, insight:  1, temperance: 1,
+
+  outfit: [H Corp clothes],
+  slashHP: 2, slashST: 2,
+  pierceHP: 1, pierceST: 1,
+  bluntHP: 0.8, bluntST: 0.8,
+  effects: [],
+
+  weapons: ((
+    name: [Pudao], power: [D10],
+    effects: [- #Hit(Inflict(EFFECTS.Paralysis,1))],
+  ),),
+
+  inventory: (),
+
+  skills: ( ( // name, cost, effects
+    name: [Slice], cost: [0],
+    effects: [
+      - #Hit(Inflict(EFFECTS.Bleed,1))
+    ]
+  ),( 
+    name: [Muscle Wound], cost: [2],
+    effects: [
+      #CondEffect([3+ bleed on Target],[Power +1])
+      - #Hit(Inflict((EFFECTS.Bleed,EFFECTS.Paralysis),(4,1)))
+    ]
+  ),( 
+    name: [Swift Attack], cost: [3],
+    effects: [
+      #CondEffect([4+ bleed on Target],[Power +2])
+      - #Hit(Inflict(EFFECTS.Bleed,4))
+    ]
+  ),(
+    name: [Counter], cost: [0],
+    effects: [
+      Passive counter, gain 2 Shield HP for every debuff
+      - #CondEffect([unit still has shield],[Inflict 1 #EFFECTS.Paralysis])
+    ]
+  )
+  ),
+
+  notes: ([Measured clashes : On _Clash Win_, #Gain(EFFECTS.Haste,2)],),
+)
