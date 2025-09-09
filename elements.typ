@@ -138,7 +138,7 @@
 
 #let EGOSkillEffect(body) = {
   set align( left)
-  block(width: 19.5%, height: 10%, resize-text(body),fill:red)
+  block(width: 19.5%, height: 10%, resize-text(body))
 }
 
 #let EgoPassive(list) = {
