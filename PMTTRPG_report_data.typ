@@ -1,21 +1,28 @@
-#import "premade.typ": *
+#import "characters.typ": *
+
+/*
+Explanation for the variables : 
+- The sheet design to use, must match a folder in Sheets/ with the right file structure (see RCorp for an example)
+- The character class to load, use empty_character for a blank sheet. (see characters.typ for an example)
+- If the character has E.G.O, display and fill the E.G.O section on the back of the sheet (see Kali).
+- Calculate character secondary stats (including level and rank) from the character's main 6 stats instead of taking them from the sheet (useful for non-bosses)
+*/
 
 #let sheet = "RCorp"
 
-#let print_blank = false
-
 #let character = Kali
 
-#let unlocked = true
+#let ego-unlocked = true
+
+#let auto-calculate-stats = true
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -------------------------------------- DO NOT MODIFY DATA BELLOW THIS POINT -------------------------------------- //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #import "elements.typ": *
-#if print_blank {
-  character = empty_character
-}
 
 // #show: body => {
 //   for pair in EFFECTS.pairs() {
@@ -39,23 +46,10 @@
 #set text(size: 15pt)
 #set page(background: image(source+"report_recto.png"))
 #let backgroundTop = 77.5pt
+#let rank = character.rank
 #place(dx: 32pt, dy: backgroundTop, Name(character.name))
 #place(dx: 174pt, dy: backgroundTop, Origin(character.origin))
 #place(dx: 330pt, dy: backgroundTop, Work(character.workHistory))
-#place(dx: 498pt, dy: backgroundTop, Rank(character.rank))
-
-#let stats1Left = 33pt
-#let stats3Left = 100% - 39.9pt - 24pt - 8pt
-#let stats13Top = 145pt
-#let stats13Dy = 60.5pt
-#place(dx: stats1Left, dy: stats13Top + 0 * stats13Dy, CalculatedStats(character.at("health")))
-#place(dx: stats1Left, dy: stats13Top + 1 * stats13Dy, CalculatedStats(character.at("stagger")))
-#place(dx: stats1Left, dy: stats13Top + 2 * stats13Dy, CalculatedStats(character.at("Sanity")))
-#place(dx: stats1Left, dy: stats13Top + 3 * stats13Dy, CalculatedStats(character.at("Light")))
-#place(dx: stats3Left, dy: stats13Top + 0 * stats13Dy, CalculatedStats(character.at("atkp")))
-#place(dx: stats3Left, dy: stats13Top + 1 * stats13Dy, CalculatedStats(character.at("defp")))
-#place(dx: stats3Left, dy: stats13Top + 2 * stats13Dy, CalculatedStats(character.at("dodgp")))
-#place(dx: stats3Left, dy: stats13Top + 3 * stats13Dy, CalculatedStats(character.at("level")))
 
 #let stats2Left = 120pt
 #let stats2Top = 209pt
@@ -67,6 +61,45 @@
 #place(dx: stats2Left + 0 * stats2Dx, dy: stats2Top + 1 * stats2Dy, Stat(character.at("charm")))
 #place(dx: stats2Left + 1 * stats2Dx, dy: stats2Top + 1 * stats2Dy, Stat(character.at("insight")))
 #place(dx: stats2Left + 2 * stats2Dx, dy: stats2Top + 1 * stats2Dy, Stat(character.at("temperance")))
+
+#let stats1Left = 33pt
+#let stats3Left = 100% - 39.9pt - 24pt - 8pt
+#let stats13Top = 145pt
+#let stats13Dy = 60.5pt
+
+#let statsum = character.at("fortitude") + character.at("prudence") + character.at("justice") + character.at("charm") + character.at("insight") + character.at("temperance")
+#let health = character.health
+#let stagger = character.stagger
+#let sanity = character.Sanity
+#let light = character.Light
+#let atkp = character.atkp
+#let defp = character.defp
+#let dodgp = character.dodgp
+#let level = character.level
+#let rank = character.rank
+
+#if auto-calculate-stats {
+  level = (statsum - 6)/2
+  rank = calc.floor((level+3)/3)
+  health = 72 + (character.fortitude * 8) + rank * 8
+  stagger = 20 + (character.charm * 4) + rank * 4
+  sanity = 15 + (character.prudence * 3)
+  light = 3 + rank
+  atkp = rank
+  defp = character.temperance
+  dodgp = character.insight
+}
+
+#place(dx: stats1Left, dy: stats13Top + 0 * stats13Dy, CalculatedStats(health))
+#place(dx: stats1Left, dy: stats13Top + 1 * stats13Dy, CalculatedStats(stagger))
+#place(dx: stats1Left, dy: stats13Top + 2 * stats13Dy, CalculatedStats(sanity))
+#place(dx: stats1Left, dy: stats13Top + 3 * stats13Dy, CalculatedStats(light))
+#place(dx: stats3Left, dy: stats13Top + 0 * stats13Dy, CalculatedStats(atkp))
+#place(dx: stats3Left, dy: stats13Top + 1 * stats13Dy, CalculatedStats(defp))
+#place(dx: stats3Left, dy: stats13Top + 2 * stats13Dy, CalculatedStats(dodgp))
+#place(dx: stats3Left, dy: stats13Top + 3 * stats13Dy, CalculatedStats(level))
+
+#place(dx: 498pt, dy: backgroundTop, Rank(rank))
 
 #let combatLeft = 79pt
 #let combatTop = 439pt
@@ -101,12 +134,12 @@
 
 #let verso = ""
 
-#let egoVersion = unlocked and is_in_dict("ego", character)
+#let egoVersion = ego-unlocked and is_in_dict("ego", character)
 
 #if egoVersion {
   verso = "_unlocked.png"
 } else {
-  verso = "=.png"
+  verso = ".png"
 }
 
 #set page(background: image(source+"report_verso"+verso))

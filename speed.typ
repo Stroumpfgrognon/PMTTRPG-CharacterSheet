@@ -1,4 +1,4 @@
-#import "premade.typ": *
+#import "characters.typ": *
 
 #let turn = 8
 
