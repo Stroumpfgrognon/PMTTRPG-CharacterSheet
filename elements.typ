@@ -1,3 +1,12 @@
+#let is_in_dict(key, dict) = {
+  for pair in dict.pairs() {
+    if pair.first() == key {
+      return true;
+    }
+  }
+  return false;
+}
+
 #let resize-text(columns: 1, body) = layout(size => {
   let font_size = text.size
   let (height,) = measure(
@@ -117,37 +126,57 @@
   block(width: 40%, height: 7.5%, resize-text(body))
 }
 
+#let EGOSkillName(body) = {
+  set align(horizon + center)
+  block(width: 13.5%, height: 2%, resize-text(body))
+}
+
+#let EGOSkillCost(body) = {
+  set align(horizon + center)
+  block(width: 5%, height: 2%, resize-text(body))
+}
+
+#let EGOSkillEffect(body) = {
+  set align( left)
+  block(width: 19.5%, height: 10%, resize-text(body),fill:red)
+}
+
+#let EgoPassive(list) = {
+  set align(horizon)
+  block(width: 41%, height: 21.5%, column-breaker(15pt, 3, list))
+}
+
 #let Notes(list) = {
   block(width: 89%, height: 13%, column-breaker(15pt, 6, list))
 }
 
 #let ATKTYPE = (
-  Slash: 0,
-  Pierce: 1,
-  Blunt: 2,
-  Raw: 3,
-  Defense: 4,
-  Dodge: 5,
+  Slash: emph("Slash"),
+  Pierce: emph("Pierce"),
+  Blunt: emph("Blunt"),
+  Raw: emph("Raw"),
+  Defense: emph("Defense"),
+  Dodge: emph("Dodge"),
 )
 
 #let EFFECTS = (
-  Rupture: "Rupture",
-  Bleed: "Bleed",
-  Burn: "Burn",
-  Tremor: "Tremor",
-  Frostbite: "Frostbite",
-  Charge: "Charge",
-  Sinking: "Sinking",
-  Haste: "Haste",
-  Bind:"Bind",
-  Aggro: "Aggro",
-  ClashPower:"Clash Power",
-  Power:"Power",
-  Paralysis:"Paralysis",
-  Light: "Light",
-  DeathriteHaste: "Deathrite[Haste]",
-  DeathriteFissure: "Deathrite[Fissure]",
-  StriderMao:"Strider[Mao]"
+  Rupture: strong("Rupture"),
+  Bleed: strong("Bleed"),
+  Burn: strong("Burn"),
+  Tremor: strong("Tremor"),
+  Frostbite: strong("Frostbite"),
+  Charge: strong("Charge"),
+  Sinking: strong("Sinking"),
+  Haste: strong("Haste"),
+  Bind: strong("Bind"),
+  Aggro: strong("Aggro"),
+  ClashPower: strong("Clash Power"),
+  Power: strong("Power"),
+  Paralysis: strong("Paralysis"),
+  Light: strong("Light"),
+  DeathriteHaste: strong("Deathrite[Haste]"),
+  DeathriteFissure: strong("Deathrite[Fissure]"),
+  StriderMao: strong("Strider[Mao]")
 )
 
 #let ClashW(effect) = {

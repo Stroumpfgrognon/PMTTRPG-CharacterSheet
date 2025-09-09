@@ -1,8 +1,12 @@
 #import "premade.typ": *
 
+#let sheet = "RCorp"
+
 #let print_blank = false
 
-#let character
+#let character = Kali
+
+#let unlocked = true
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -------------------------------------- DO NOT MODIFY DATA BELLOW THIS POINT -------------------------------------- //
@@ -13,25 +17,27 @@
   character = empty_character
 }
 
-#show: body => {
-  for pair in EFFECTS.pairs() {
-    body = {
-      show pair.last(): strong
-      body
-    }
-  }
-  for pair in ATKTYPE.pairs(){
-    body = {
-      show pair.first(): emph
-      body
-    }
-  }
-  body
-}
+// #show: body => {
+//   for pair in EFFECTS.pairs() {
+//     body = {
+//       show pair.last(): strong
+//       body
+//     }
+//   }
+//   for pair in ATKTYPE.pairs() {
+//     body = {
+//       show pair.first(): emph
+//       body
+//     }
+//   }
+//   body
+// }
+
+#let source = "Sheets/"+sheet+"/"
 
 #set page(margin: 0cm)
 #set text(size: 15pt)
-#set page(background: image("PMTTRPG_report_recto.png"))
+#set page(background: image(source+"report_recto.png"))
 #let backgroundTop = 77.5pt
 #place(dx: 32pt, dy: backgroundTop, Name(character.name))
 #place(dx: 174pt, dy: backgroundTop, Origin(character.origin))
@@ -79,35 +85,64 @@
 #let weaponsTop = 429pt
 #let weaponsDx = 86.5pt
 #let weaponsDy = 137pt
-#let i = 0
 #let weapons = character.at("weapons")
-#while i < weapons.len() {
+#for i in range(weapons.len()) {
   let weapon = weapons.at(i)
   let y = calc.div-euclid(i, 2)
   let x = calc.rem-euclid(i, 2) * 2
   place(dx: weaponsLeft + weaponsDx * x, dy: weaponsTop + weaponsDy * y + -3pt, WeaponName(weapon.at("name")))
   place(dx: weaponsLeft + weaponsDx * x + 113pt, dy: weaponsTop + weaponsDy * y + -3pt, WeaponRoll(weapon.at("power")))
   place(dx: weaponsLeft + weaponsDx * x, dy: weaponsTop + weaponsDy * y + 27pt, WeaponDesc(weapon.at("effects")))
-  i += 1
 }
 
 #place(dx: 30pt, dy: 740pt, Inventory(character.inventory))
 
 #pagebreak()
 
-#set page(background: image("PMTTRPG_report_verso.png"))
+#let verso = ""
+
+#let egoVersion = unlocked and is_in_dict("ego", character)
+
+#if egoVersion {
+  verso = "_unlocked.png"
+} else {
+  verso = "=.png"
+}
+
+#set page(background: image(source+"report_verso"+verso))
+
+#if egoVersion {
+  let egoTitleTop = 26pt
+  let egoLeft = 319pt
+  let egoPassiveTop = 105pt
+  let egoSkillTop = 298pt
+  place(dx: egoLeft+2pt, dy: egoTitleTop, image(character.ego.nameplate, width: 40%))
+  place(dx: egoLeft, dy: egoPassiveTop, EgoPassive(character.ego.passives))
+  for i in range(character.ego.skills.len()) {
+    let skill = character.ego.skills.at(i)
+    let placeLeft = egoLeft
+    let placeTop = egoSkillTop + 118.5pt * i
+    if calc.floor(i/3) == 1 {
+      placeLeft = egoLeft + 128pt
+      placeTop = egoSkillTop + 119pt * (i - 3)
+    }
+    place(dx: placeLeft, dy: placeTop, EGOSkillName(skill.name))
+    place(dx: placeLeft + 86.5pt, dy: placeTop, EGOSkillCost(skill.cost))
+    place(dx: placeLeft, dy: placeTop + 23pt, EGOSkillEffect(skill.effects))
+  }
+}
 
 #let skillsLeft = 33pt
 #let skillsTop = 48pt
 #let skillsDy = 102pt
-#let i = 0
 #let skills = character.at("skills")
-#while i < skills.len() {
+#for i in range(character.skills.len()) {
   let skill = skills.at(i)
   place(dx: skillsLeft, dy: skillsTop + skillsDy * i - 3.5pt, SkillName(skill.at("name")))
   place(dx: skillsLeft + 175pt, dy: skillsTop + skillsDy * i + -3.5pt, SkillCost(skill.at("cost")))
   place(dx: skillsLeft, dy: skillsTop + skillsDy * i + 23pt, SkillEffect(skill.at("effects")))
   i += 1
 }
+
 
 #place(dx: 31pt, dy: 700pt, Notes(character.at("notes")))

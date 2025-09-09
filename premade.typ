@@ -1,4 +1,4 @@
-#import "elements.typ":(Hit,ClashW,ClashL,Gain,Inflict,EFFECTS,CondEffect,Use )
+#import "elements.typ":(Hit,ClashW,ClashL,Gain,Inflict,EFFECTS,ATKTYPE,CondEffect,Use )
 
 #let empty_character = (
   name:        [],
@@ -71,11 +71,11 @@
   slashHP: 1, slashST: 0.5,
   pierceHP: 1, pierceST: 1,
   bluntHP: 1, bluntST: 1,
-  effects: [Overcharge - Max Charge count becomes 20],
+  effects: [Overcharge - Max #EFFECTS.Charge count becomes 20],
 
   weapons: ( (
     name: [Charged dagger], power: [D10],
-    effects: [Deals 2 bleed potency on hit when Charge is 10 or more],
+    effects: [Deals 2 bleed potency on hit when #EFFECTS.Charge is 10 or more],
   ), (
     name: [], power: [],
     effects: [],
@@ -91,16 +91,16 @@
 
   skills: ( ( // name, cost, effects
     name: [Leftovers be gone], cost: [0],
-    effects: [Unopposed attack. Gain +3 Charge count, restore 1 Light.]
+    effects: [Unopposed attack. Gain +3 #EFFECTS.Charge count, restore 1 #EFFECTS.Light.]
   ), (
     name: [Concentration], cost: [2],
-    effects: [Defense skill. Gain +8 Charge count]
+    effects: [Defense skill. Gain +8 #EFFECTS.Charge count]
   ),(
     name: [Slippery tail], cost: [2],
-    effects: [Dodge skill. On dodge, gains 1 Charge count and restore 1 Light. Can consume 3 Charge count to gain +1 Aggro (attracts attacks) (repeatable)]
+    effects: [Dodge skill. On dodge, gains 1 #EFFECTS.Charge count and restore 1 #EFFECTS.Light. Can consume 3 #EFFECTS.Charge count to gain +1 Aggro (attracts attacks) (repeatable)]
   ), (
     name: [Kingless and unbound], cost: [4],
-    effects: [Unopposed attack. Inflicts 5 bleed. For each 10 Charge count on self, consume 10 Charge count and recycle attack]
+    effects: [Unopposed attack. Inflicts 5 bleed. For each 10 #EFFECTS.Charge count on self, consume 10 #EFFECTS.Charge count and recycle attack]
   ), ),
 
   notes: (),
@@ -124,30 +124,30 @@
   slashHP: 1, slashST: 1,
   pierceHP: 1, pierceST: 1,
   bluntHP: 1, bluntST: 0.5,
-  effects: [Overcharge - Max Charge count becomes 20],
+  effects: [Overcharge - Max #EFFECTS.Charge count becomes 20],
 
   weapons: ((  // name, cost, effects
     name:  [Clark's dagger], power: [D6],
     effects:[?],
   ),(
     name: [Charged Mace], power: [D12],
-    effects: [Deals 20% more stagger damage (rounded up) when Charge count is 10 or more],
+    effects: [Deals 20% more stagger damage (rounded up) when #EFFECTS.Charge count is 10 or more],
   ),),
 
   inventory: ("Protective mask",),
 
   skills: ( ( // name, cost, effects
     name: [Leftovers be gone], cost: [0],
-    effects: [Unopposed attack. Gain +3 Charge count, restore 1 Light.]
+    effects: [Unopposed attack. Gain +3 #EFFECTS.Charge count, restore 1 #EFFECTS.Light.]
   ), (
     name: [Concentration], cost: [2],
-    effects: [Defense skill. Gain +8 Charge count]
+    effects: [Defense skill. Gain +8 #EFFECTS.Charge count]
   ),(
     name: [Bashful headbutt], cost: [2],
-    effects: [Attack skill. If Charge count si 8 or more, inflict 10% more stagger damage for this turn. Consume 3 Charge count to inflict 2 stagger damage to self and 5 to ennemy on hit. Regenerates 2 Light on stagger]
+    effects: [Attack skill. If #EFFECTS.Charge count si 8 or more, inflict 10% more stagger damage for this turn. Consume 3 #EFFECTS.Charge count to inflict 2 stagger damage to self and 5 to ennemy on hit. Regenerates 2 #EFFECTS.Light on stagger]
   ), (
     name: [A Ram’s pride], cost: [4],
-    effects: [Attack skill. Spend 10 Charge count to give 1 Atk power up to self and up to 3 allies next turn. At less than 10 Charge count, inflict 1 Atk power down to all alies except self, gain 1 Atk power up and 10 Charge count.]
+    effects: [Attack skill. Spend 10 #EFFECTS.Charge count to give 1 Atk power up to self and up to 3 allies next turn. At less than 10 #EFFECTS.Charge count, inflict 1 Atk power down to all alies except self, gain 1 Atk power up and 10 #EFFECTS.Charge count.]
   ),
   ),
 
@@ -172,27 +172,27 @@
   slashHP: 1, slashST: 1,
   pierceHP: 1, pierceST: 0.5,
   bluntHP: 1, bluntST: 1,
-  effects: [Overcharge - Max Charge count becomes 20],
+  effects: [Overcharge - Max #EFFECTS.Charge count becomes 20],
 
   weapons: ((
     name: [Charged Staff], power: [D12],
-    effects: [Deals 20% more Sanity damage (rounded up) when Charge count is 10 or more],
+    effects: [Deals 20% more Sanity damage (rounded up) when #EFFECTS.Charge count is 10 or more],
   ),),
 
   inventory: ("M Corp's Moonstone - Reduces Sanity damage to self by 20%",),
 
   skills: ( ( // name, cost, effects
     name: [Leftovers be gone], cost: [0],
-    effects: [Unopposed attack. Gain +3 Charge count, restore 1 Light.]
+    effects: [Unopposed attack. Gain +3 #EFFECTS.Charge count, restore 1 #EFFECTS.Light.]
   ), (
     name: [Concentration], cost: [2],
-    effects: [Defense skill. Gain +8 Charge count]
+    effects: [Defense skill. Gain +8 #EFFECTS.Charge count]
   ),(
     name: [Mind Whip], cost: [3],
-    effects: [Attack skill. Consume up to 8 Charge count to inflict 4 Sinking in a small area, repetable 2 times but costs 5 Sanity for each repeat. If less than 8 Charge count were spent, attack becomes indescriminate.]
+    effects: [Attack skill. Consume up to 8 #EFFECTS.Charge count to inflict 4 #EFFECTS.Sinking in a small area, repetable 2 times but costs 5 Sanity for each repeat. If less than 8 #EFFECTS.Charge count were spent, attack becomes indescriminate.]
   ), (
     name: [Madness], cost: [4],
-    effects: [Attack skill. At less than 10 charge count, consume all charge count and spend 15-Charge spent Sanity. At 10 or more Charge count, spend 10 Charge count. Inflicts Sanity damage equal to damage dealt to ennemy. If ennemy's Sanity reaches 0 or less, restores 75% of max Sanity and 2 Light]
+    effects: [Attack skill. At less than 10 charge count, consume all charge count and spend 15-#EFFECTS.Charge spent Sanity. At 10 or more #EFFECTS.Charge count, spend 10 #EFFECTS.Charge count. Inflicts Sanity damage equal to damage dealt to ennemy. If ennemy's Sanity reaches 0 or less, restores 75% of max Sanity and 2 #EFFECTS.Light]
   ),
   ),
 
@@ -242,13 +242,13 @@
     effects: [If Kali staggers or kill target using this skill, reuse it on another random ennemy target]
   ), (
     name: [Upstanding Slash], cost: [2],
-    effects: [[BLUNT] If this did more than 8 damage, reduce the next cost by 1]
+    effects: [#ATKTYPE.Blunt :: If this did more than 8 damage, reduce the next cost by 1]
   ), (
     name: [Spear], cost: [2],
-    effects: [[PIERCE] If this did more than 8 damage, reduce the next cost by 1]
+    effects: [#ATKTYPE.Pierce :: If this did more than 8 damage, reduce the next cost by 1]
   ),(
     name: [Level Slash], cost: [2],
-    effects: [If this did more than 8 damage, restore 3 Light and reduce next cost by 1]
+    effects: [If this did more than 8 damage, restore 3 #EFFECTS.Light and reduce next cost by 1]
   ), (
     name: [Greater Split : Vertical], cost: [5],
     effects: [Rolls twice for clashing & damage]
@@ -256,6 +256,35 @@
     name: [Greater Split : Horizontal], cost: [7],
     effects: [Mass summation. Rolls twice for clashing & damage]
   ), ),
+
+    ego : (
+      nameplate : "E.G.Os/RedMist.png",
+      passives:(
+        [The Red Mist's hunger - Gains +1 #EFFECTS.Power on turn start for each ennemy killed (max 5 stacks)],[
+          Gebura's Prowess - Gains +1 #EFFECTS.Power for every 2 Speed difference with attacked ennemy (max 5)
+        ],
+      ),
+      skills:((
+        name: [Mimicry release], cost: [0],
+        effects: [Gains 1 stack of "Bloodlust", giving +1 #EFFECTS.Power per stack, max 3 stacks. ]
+        ),(
+        name: [Greater Split : Horizontal], cost: [8],
+        effects: [Deals a limbillion damage to Heathcliff]
+        ),(
+        name: [Greater Split : Horizontal], cost: [0],
+        effects: [Deals a limbillion damage to Heathcliff]
+        ),(
+        name: [Greater Split : Horizontal], cost: [0],
+        effects: [Deals a limbillion damage to Heathcliff]
+        ),(
+        name: [Greater Split : Horizontal], cost: [0],
+        effects: [Deals a limbillion damage to Heathcliff]
+        ),(
+        name: [Surprise skeleton], cost: [69],
+        effects: [He has a bone to pick with you]
+        ),
+      ),
+    ),
 
   notes: (
     "Speed 3 - Can attack 3 times per turn at different speed",
@@ -295,19 +324,19 @@
   skills: ( ( // name, cost, effects
     name: [Pursuit], cost: [0],
     effects: [
-      #CondEffect([Target has 2+ #EFFECTS.Rupture], [Clash Power +1])
+      #CondEffect([Target has 2+ #EFFECTS.Rupture], [#EFFECTS.ClashPower +1])
     - #Hit[#Inflict(EFFECTS.Rupture,2)]
-    - Restore 1 Light
+    - Restore 1 #EFFECTS.Light
     ]
   ), (
     name: [Overwhelm], cost: [2],
-    effects: [This skill doesn't trigger Rupture.
+    effects: [This skill doesn't trigger #EFFECTS.Rupture.
     - #Hit(Inflict(EFFECTS.Rupture,1))
     - Recycle this attack Speed / 4 times]
   ),(
     name: [Umbra Strike], cost: [3],
-    effects: [#CondEffect([Self is faster than target],[+1 Power for every 2 Speed difference (max 3)])
-    #CondEffect([Target has 4+ Rupture],[Gain +1 Power])
+    effects: [#CondEffect([Self is faster than target],[+1 #EFFECTS.Power for every 2 Speed difference (max 3)])
+    #CondEffect([Target has 4+ #EFFECTS.Rupture],[Gain +1 #EFFECTS.Power])
     - #ClashW([#Inflict(EFFECTS.Rupture,2)])
     - #Hit([#Inflict((EFFECTS.Rupture,EFFECTS.DeathriteHaste),(5,3)) and #Gain(EFFECTS.StriderMao,3)])
     // Inflict 5 #EFFECTS.Rupture and 1 #EFFECTS.DeathriteHaste
@@ -319,7 +348,7 @@
   ),
   ),
 
-  notes: ([Vigor[Mao] - Inflict +1 Rupture to ennemies with lower speed],[Strider[Mao] - On hit with ennemies with Deathrite[Haste], inflict +1 Rupture (3 times per turn)]),
+  notes: ([Vigor[Mao] - Inflict +1 #EFFECTS.Rupture to ennemies with lower speed],[Strider[Mao] - On hit with ennemies with Deathrite[Haste], inflict +1 #EFFECTS.Rupture (3 times per turn)]),
 )
 
 #let Zilu = (
@@ -357,9 +386,9 @@
   skills: ( ( // name, cost, effects
     name: [Startling Strike], cost: [0],
     effects: [
-      #CondEffect([Target has 5+ #EFFECTS.Rupture], [Clash Power +1])
+      #CondEffect([Target has 5+ #EFFECTS.Rupture], [#EFFECTS.ClashPower +1])
     - #Hit[#Inflict(EFFECTS.Rupture,3)]
-    - Restore 2 Light
+    - Restore 2 #EFFECTS.Light
     ]
   ), (
     name: [Perforating kill], cost: [1],
@@ -371,30 +400,30 @@
   ),(
     name: [Etching Strike], cost: [2],
     effects: [
-    #CondEffect([Target has 4+ Rupture],[Gain +1 Power])
+    #CondEffect([Target has 4+ #EFFECTS.Rupture],[Gain +1 #EFFECTS.Power])
     - #Hit(Inflict((EFFECTS.Rupture,EFFECTS.DeathriteHaste),(6,3)))
     ]
   ),(
     name: [Cursewrit Butcherblade - Blinkstep], cost: [4],
-    effects: [Gain 1 Power for every 2 Rupture on target (max 10). If Target has #EFFECTS.DeathriteHaste, inflict +30% damage.
+    effects: [Gain 1 #EFFECTS.Power for every 2 #EFFECTS.Rupture on target (max 10). If Target has #EFFECTS.DeathriteHaste, inflict +30% damage.
     - #Hit(Inflict(EFFECTS.Rupture,10))]
   ),(
     name: [Incomplete Seal Release: \<Tianjiu Star's Blade>], cost: [5],
     effects: [+20% bonus damage for every 2 Speed difference with Target (max 60%) \
-    Gain 1 Power for every 2 Rupture on target (max 10) \
+    Gain 1 #EFFECTS.Power for every 2 #EFFECTS.Rupture on target (max 10) \
     Attacks with Tianjiu Star's Blade.
     - #Hit(Inflict((EFFECTS.Rupture,EFFECTS.DeathriteFissure),(7,3)))]
   ),(
     name: [Cursewrit], cost: [0],
-    effects: [Counter skill (Dodge). If Target has #EFFECTS.DeathriteHaste, double Rupture infliction.
+    effects: [Counter skill (Dodge). If Target has #EFFECTS.DeathriteHaste, double #EFFECTS.Rupture infliction.
     - #Hit(Inflict(EFFECTS.Rupture,4))]
   ),
   ),
 
   notes: (
-    [Vigor[Mao] - Inflict +1 Rupture to ennemies with lower speed],
-    [Strider[Mao] - On hit with ennemies with Deathrite[Haste], inflict +1 Rupture (3 times per turn)],
-    [Speed 3 - 3 more attacks per turn],[Dominator[Mao] - If Speed is greater than target by 2 or more, gain +1 Power],
+    [Vigor[Mao] - Inflict +1 #EFFECTS.Rupture to ennemies with lower speed],
+    [Strider[Mao] - On hit with ennemies with Deathrite[Haste], inflict +1 #EFFECTS.Rupture (3 times per turn)],
+    [Speed 3 - 3 more attacks per turn],[Dominator[Mao] - If Speed is greater than target by 2 or more, gain +1 #EFFECTS.Power],
     [Shin (心) Radiance - Gain 100 Shield on Turn Start, HP cannot get below 1 if attacked without Mang]),
 )
 
@@ -420,7 +449,8 @@
 
   weapons: ((
     name: [Tri-Axe], power: [D8],
-    effects: [- #Hit(Inflict(EFFECTS.Bleed,2))],
+    effects: [#ATKTYPE.Slash \
+      - #Hit(Inflict(EFFECTS.Bleed,2))],
   ),),
 
   inventory: (),
@@ -434,17 +464,17 @@
   ),( // name, cost, effects
     name: [Tendon Slice], cost: [2],
     effects: [
-      #CondEffect([Speed higher than target],[Power +2])
-      #CondEffect([Target has 3+ Bleed],[Power +1])
+      #CondEffect([Speed higher than target],[ #EFFECTS.Power +2])
+      #CondEffect([Target has 3+ #EFFECTS.Bleed],[ #EFFECTS.Power +1])
       #Use(Gain(EFFECTS.Haste,1))
       - #Hit(Inflict((EFFECTS.Bleed,EFFECTS.Bind),(4,2)))
     ]
   ),( // name, cost, effects
     name: [Messy Attack], cost: [3],
     effects: [
-      #Use[At 7+ Speed : Power +1]\
-      #Use[If target has 4+ Bleed : Power +1] \
-      #ClashW([Inflict +4 Bleed])\
+      #Use[At 7+ Speed : #EFFECTS.Power +1]\
+      #Use[If target has 4+ #EFFECTS.Bleed : #EFFECTS.Power +1] \
+      #ClashW([Inflict +4 #EFFECTS.Bleed])\
       - #Hit(Inflict(EFFECTS.Bleed,4))
     ]
   ),
