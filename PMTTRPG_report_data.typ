@@ -8,21 +8,19 @@ Explanation for the variables :
 - Calculate character secondary stats (including level and rank) from the character's main 6 stats instead of taking them from the sheet (useful for non-bosses)
 */
 
-#let sheet = "RCorp"
+#let sheet = "Hana"
 
-#let character = Kali
+#let character = Zilu
 
 #let ego-unlocked = true
 
 #let auto-calculate-stats = true
 
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -------------------------------------- DO NOT MODIFY DATA BELLOW THIS POINT -------------------------------------- //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#import "elements.typ": *
+#import "bin/elements.typ": *
 
 // #show: body => {
 //   for pair in EFFECTS.pairs() {

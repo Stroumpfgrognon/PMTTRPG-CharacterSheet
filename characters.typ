@@ -1,4 +1,4 @@
-#import "elements.typ":(Hit,ClashW,ClashL,Gain,Inflict,EFFECTS,ATKTYPE,CondEffect,Use )
+#import "bin/elements.typ":(Hit,ClashW,ClashL,Gain,Inflict,EFFECTS,ATKTYPE,CondEffect,Use )
 
 #let empty_character = (
   name:        [],
@@ -154,8 +154,8 @@
   notes: (),
 )
 
-#let Juline = (
-  name:        [Juline],
+#let Eleonore = (
+  name:        [Eleonore],
   origin:      [T-Corp's Nest],
   workHistory: [Espionnage],
   rank:        [2],
@@ -489,7 +489,7 @@
   workHistory: [Unknown],
   rank:        [1],
 
-  health:  80, atkp:  1,
+  health:  70, atkp:  1,
   stagger: 30, defp:  1,
   Sanity:  15, dodgp: 1,
   Light:   5, level: 4,

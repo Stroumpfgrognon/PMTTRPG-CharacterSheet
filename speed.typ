@@ -1,8 +1,9 @@
 #import "characters.typ": *
+#import "bin/functions.typ": diff_names
 
 #let turn = 8
 
-#let characters = (Juline, Clark, Diane, MaoHeish, MaoHeish)
+#let characters = (Eleonore, Clark, Diane, MaoHeish, MaoHeish)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -------------------------------------- DO NOT MODIFY DATA BELLOW THIS POINT -------------------------------------- //
@@ -11,32 +12,14 @@
 #set page(paper: "a8", fill: black, margin: 0.1cm); #set text(fill: white, size: 9pt); #set align(center + horizon);
 
 #import "@preview/suiji:0.4.0": *
-#let character_names = ()
 #let speeds = ()
 
-#let match_find(item, compare) = {
-  return item == compare
-}
+#let character_names = diff_names(characters)
 
-#for i in range(0, characters.len()) {
-  let name = characters.at(i).name.text
-  let already_found = true
-  let limit  =100
-  while limit>0 {
-    limit -=1
-    let already_found = character_names.find(it => it == name)
-    if already_found != none {
-      name = name + "+1"
-    }
-    else{
-      break
-    }
-    
-  }
-  character_names.push(name)
+#let rng_name = "Z"
+#if character_names.len() > 0 {
+  let rng_name = character_names.sum()
 }
-
-#let rng_name = character_names.sum()
 #let name_seed = 0
 #for i in range(rng_name.len()) {
   if calc.round(i / 2) == 0 {
@@ -47,7 +30,7 @@
 
 #let rng = gen-rng-f(name_seed * turn)
 
-#for i in range(characters.len()) {
+#for i in range(character_names.len()) {
   let res = integers-f(rng, high: 6, low: 1, size: 1)
   rng = gen-rng-f(res.first().first())
   speeds.push((res.last().first() + characters.at(i).justice, character_names.at(i)))
