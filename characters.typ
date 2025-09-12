@@ -1,4 +1,5 @@
-#import "bin/elements.typ":(Hit,ClashW,ClashL,Gain,Inflict,EFFECTS,ATKTYPE,CondEffect,Use )
+#import "bin/elements.typ":(Hit,ClashW,ClashL,Gain,Inflict,CondEffect,Use )
+#import "bin/keywords.typ": ATKTYPE, EFFECTS
 
 #let empty_character = (
   name:        [],

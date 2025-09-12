@@ -1,7 +1,7 @@
 #import "characters.typ": *
 
 /*
-Explanation for the variables : 
+Explanation for the variables :
 - The sheet design to use, must match a folder in Sheets/ with the right file structure (see RCorp for an example)
 - The character class to load, use empty_character for a blank sheet. (see characters.typ for an example)
 - If the character has E.G.O, display and fill the E.G.O section on the back of the sheet (see Kali).
@@ -38,11 +38,11 @@ Explanation for the variables :
 //   body
 // }
 
-#let source = "Sheets/"+sheet+"/"
+#let source = "Sheets/" + sheet + "/"
 
 #set page(margin: 0cm)
 #set text(size: 15pt)
-#set page(background: image(source+"report_recto.png"))
+#set page(background: image(source + "report_recto.png"))
 #let backgroundTop = 77.5pt
 #let rank = character.rank
 #place(dx: 32pt, dy: backgroundTop, Name(character.name))
@@ -65,7 +65,14 @@ Explanation for the variables :
 #let stats13Top = 145pt
 #let stats13Dy = 60.5pt
 
-#let statsum = character.at("fortitude") + character.at("prudence") + character.at("justice") + character.at("charm") + character.at("insight") + character.at("temperance")
+#let statsum = (
+  character.at("fortitude")
+    + character.at("prudence")
+    + character.at("justice")
+    + character.at("charm")
+    + character.at("insight")
+    + character.at("temperance")
+)
 #let health = character.health
 #let stagger = character.stagger
 #let sanity = character.Sanity
@@ -77,8 +84,8 @@ Explanation for the variables :
 #let rank = character.rank
 
 #if auto-calculate-stats {
-  level = (statsum - 6)/2
-  rank = calc.floor((level+3)/3)
+  level = (statsum - 6) / 2
+  rank = calc.floor((level + 3) / 3)
   health = 72 + (character.fortitude * 8) + rank * 8
   stagger = 20 + (character.charm * 4) + rank * 4
   sanity = 15 + (character.prudence * 3)
@@ -140,20 +147,20 @@ Explanation for the variables :
   verso = ".png"
 }
 
-#set page(background: image(source+"report_verso"+verso))
+#set page(background: image(source + "report_verso" + verso))
 
 #if egoVersion {
   let egoTitleTop = 26pt
   let egoLeft = 319pt
   let egoPassiveTop = 105pt
   let egoSkillTop = 298pt
-  place(dx: egoLeft+2pt, dy: egoTitleTop, image(character.ego.nameplate, width: 40%))
+  place(dx: egoLeft + 2pt, dy: egoTitleTop, image(character.ego.nameplate, width: 40%))
   place(dx: egoLeft, dy: egoPassiveTop, EgoPassive(character.ego.passives))
   for i in range(character.ego.skills.len()) {
     let skill = character.ego.skills.at(i)
     let placeLeft = egoLeft
     let placeTop = egoSkillTop + 118.5pt * i
-    if calc.floor(i/3) == 1 {
+    if calc.floor(i / 3) == 1 {
       placeLeft = egoLeft + 128pt
       placeTop = egoSkillTop + 119pt * (i - 3)
     }
