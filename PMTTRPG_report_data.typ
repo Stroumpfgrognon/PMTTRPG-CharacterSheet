@@ -22,22 +22,6 @@ Explanation for the variables :
 
 #import "bin/elements.typ": *
 
-// #show: body => {
-//   for pair in EFFECTS.pairs() {
-//     body = {
-//       show pair.last(): strong
-//       body
-//     }
-//   }
-//   for pair in ATKTYPE.pairs() {
-//     body = {
-//       show pair.first(): emph
-//       body
-//     }
-//   }
-//   body
-// }
-
 #let source = "Sheets/" + sheet + "/"
 
 #set page(margin: 0cm)

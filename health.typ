@@ -1,43 +1,37 @@
-#import "characters.typ": *
+#import "characters.typ":*
 #import "bin/keywords.typ": ATKTYPE
-#import "bin/functions.typ": damage_calc, diff_names, multi_sort
+#import "bin/functions.typ":full_damage_calc, diff_names, multi_sort
 
 #let characters = (Eleonore, 
-                   Clark, 
-                   Diane, 
-                   MaoHeish, 
-                   MaoHeish,
-                   Zilu)
+                   Clark,
+                   Zilu
+                   )
 
 #let icon = ([d6], 
              [d8],
-             [d10], 
-             [d12], 
-             [d20],
-             [Eye])
+             [23])
 
 #let speed = (1, 
-              3, 
-              5, 
-              6, 
-              8,
-              24)
+              3,
+              10)
 
-#let damage_dealt = (5, 
-                     7, 
-                     9, 
-                     11, 
-                     10 + 25 + 33 + 2 + 25 + 345,
+#let damage_dealt = (0, 
+                     0,
                      0)
 
-#let stagger_dealt = (3, 
-                      4, 
-                      5, 
-                      6, 
-                      5 + 15,
+#let stagger_dealt = (0, 
+                      0,
                       0)
 
-#let quick_calc = damage_calc(Clark, ATKTYPE.Slash, 5)
+#let sanity_dealt = (0, 
+                     0,
+                     0,)
+
+#let light_spent = (0, 
+                    0,
+                    0,)
+
+#let quick_calc = full_damage_calc(Zilu, 10)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -------------------------------------- DO NOT MODIFY DATA BELLOW THIS POINT -------------------------------------- //
@@ -51,16 +45,18 @@
 
 #show table.cell.where(x: 3): set text(fill: red)
 #show table.cell.where(x: 4): set text(fill: yellow)
+#show table.cell.where(x: 5): set text(fill: blue)
+#show table.cell.where(x: 6): set text(fill: rgb("#fff2af"))
 
-#let speed_sorted = multi_sort(speed, (character_names, icon, speed, damage_dealt, stagger_dealt), addIndex: true)
+#let speed_sorted = multi_sort(speed, (character_names, icon, speed, damage_dealt, stagger_dealt,sanity_dealt,light_spent), addIndex: true)
 
 #show table.cell.where(x: 3): set text(fill: red)
 #show table.cell.where(x: 4): set text(fill: yellow)
 
 #table(
-  columns: (0.8fr, 0.3fr, 0.3fr, 0.5fr, 0.5fr),
+  columns: (0.8fr, 0.3fr, 0.3fr, 0.5fr, 0.5fr,0.4fr,0.3fr),
   stroke: white,
-  [*_Name_*], [*Icon*], [*Speed*], [*Health*], [*Stagger*],
+  [*_Name_*], [*Icon*], [*Speed*], [*Health*], [*Stagger*], [*Sanity*],[*Light*],
   // ..for i in range(character_names.len()) {
   //   let name = character_names.at(i)
   //   let ico = icon.at(i)
@@ -75,8 +71,12 @@
     let speed_value = i.at(0)
     let HP = characters.at(i.last()).health - i.at(4)
     let ST = characters.at(i.last()).stagger - i.at(5)
-    ([#name], [#ico], [#speed_value], [#HP], [#ST])
+    let Snt = characters.at(i.last()).Sanity - i.at(6)
+    let Lt = characters.at(i.last()).Light - i.at(7)
+    ([#name], [#ico], [#speed_value], [#HP], [#ST],[#Snt],[#Lt])
   },
 )
 
-Quick damage calculations : #text(fill: red)[#quick_calc.first() HP] & #text(fill: yellow)[#quick_calc.last() ST] damage
+// Quick damage calculations : #text(fill: red)[#quick_calc.first() HP] & #text(fill: yellow)[#quick_calc.last() ST] damage
+
+ #block(width:30%)[#quick_calc]
