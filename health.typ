@@ -31,6 +31,10 @@
                     0,
                     0,)
 
+#let notes = ("", 
+              "",
+              "-1 ammo",)
+
 #let quick_calc = full_damage_calc(Zilu, 10)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -48,15 +52,15 @@
 #show table.cell.where(x: 5): set text(fill: blue)
 #show table.cell.where(x: 6): set text(fill: rgb("#fff2af"))
 
-#let speed_sorted = multi_sort(speed, (character_names, icon, speed, damage_dealt, stagger_dealt,sanity_dealt,light_spent), addIndex: true)
+#let speed_sorted = multi_sort(speed, (character_names, icon, speed, damage_dealt, stagger_dealt,sanity_dealt,light_spent,notes), addIndex: true)
 
 #show table.cell.where(x: 3): set text(fill: red)
 #show table.cell.where(x: 4): set text(fill: yellow)
 
 #table(
-  columns: (0.8fr, 0.3fr, 0.3fr, 0.5fr, 0.5fr,0.4fr,0.3fr),
+  columns: (0.5fr, 0.3fr, 0.3fr, 0.3fr, 0.3fr,0.3fr,0.3fr,0.7fr),
   stroke: white,
-  [*_Name_*], [*Icon*], [*Speed*], [*Health*], [*Stagger*], [*Sanity*],[*Light*],
+  [*_Name_*], [*Icon*], [*Speed*], [*HP*], [*ST*], [*SP*],[*Lt*], [*Notes*],
   // ..for i in range(character_names.len()) {
   //   let name = character_names.at(i)
   //   let ico = icon.at(i)
@@ -73,7 +77,7 @@
     let ST = characters.at(i.last()).stagger - i.at(5)
     let Snt = characters.at(i.last()).Sanity - i.at(6)
     let Lt = characters.at(i.last()).Light - i.at(7)
-    ([#name], [#ico], [#speed_value], [#HP], [#ST],[#Snt],[#Lt])
+    ([#name], [#ico], [#speed_value], [#HP], [#ST],[#Snt],[#Lt], [#notes.at(i.last())])
   },
 )
 

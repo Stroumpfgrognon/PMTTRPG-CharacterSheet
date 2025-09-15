@@ -125,6 +125,14 @@
   [\[_On Use_\] : #effect]
 }
 
+#let Heads(effect) = {
+  [\[_On 50%+ roll_\] : #effect]
+}
+
+#let Tails(effect) = {
+  [\[_On 50%- roll_\] : #effect]
+}
+
 #let Gain(effect, count) = {
   if type(effect) == array {
     [Gain ]
@@ -153,6 +161,21 @@
     }
     [and #count.at(i) #effect.at(i)]
   } else [Inflict #count #effect]
+}
+
+#let Special(effect, count) = {
+  if type(effect) == array {
+    [Applies ]
+    for i in range(effect.len() - 2) {
+      [#count.at(i) #effect.at(i), ]
+    }
+    let i = effect.len() - 2
+    if i >= 0 {
+      [#count.at(i) #effect.at(i) ]
+      i += 1
+    }
+    [and #count.at(i) #effect.at(i)]
+  } else [Applies #count #effect]
 }
 
 #let CondEffect(cond, effect) = {

@@ -1,5 +1,6 @@
-#import "bin/elements.typ":(Hit,ClashW,ClashL,Gain,Inflict,CondEffect,Use )
-#import "bin/keywords.typ": ATKTYPE, EFFECTS
+#import "bin/elements.typ":(Hit,ClashW,ClashL,Gain,Inflict, Special,CondEffect,Use, Heads, Tails )
+#import "bin/keywords.typ": ATKTYPE, EFFECTS, WEAPONS, ARMOR, SPECIAL
+#import "bin/functions.typ": bullet
 
 #let empty_character = (
   name:        [],
@@ -538,4 +539,204 @@
   ),
 
   notes: ([Measured clashes : On _Clash Win_, #Gain(EFFECTS.Haste,2)],),
+)
+
+#let RingPointillist = (
+  name:        [Ring Pointillist Student],
+  origin:      [I Corp's Backstreets],
+  workHistory: [Ring member],
+  rank:        [2],
+
+  health:  70, atkp:  1,
+  stagger: 30, defp:  1,
+  Sanity:  15, dodgp: 1,
+  Light:   5, level: 4,
+
+  fortitude: 1, prudence: 2, justice:    1,
+  charm:     3, insight:  2, temperance: 3,
+
+  outfit: [Ring Student garment],
+  slashHP: 1, slashST: 1,
+  pierceHP: 0.5, pierceST: 0.5,
+  bluntHP: 2, bluntST: 2,
+  effects: [],
+
+  weapons: ((
+    name: [Fighting Brush], power: [D12],
+    effects: [- #WEAPONS.Medium, #WEAPONS.OneHand, #ATKTYPE.Pierce
+      - #Hit(Inflict(EFFECTS.NormalRandom,3))
+    ],
+  ),),
+
+  inventory: (),
+
+  skills: ( ( // name, cost, effects
+    name: [Paint Over], cost: [1],
+    effects: [
+      #CondEffect([Target has 6+ #EFFECTS.Bleed], [#EFFECTS.ClashPower +1])
+      - #Heads(Inflict(EFFECTS.NormalRandom,2))
+      - #Hit(Inflict(EFFECTS.Bleed,2))
+    ]
+  ),( 
+    name: [Hematic Coloring], cost: [2],
+    effects: [
+      #Gain(EFFECTS.Power,1) for every 3 #EFFECTS.Bleed on target (max 3)
+      - #Hit(Inflict((EFFECTS.Bleed,EFFECTS.NormalRandom),(1,2)))
+      - If target has 3+ type of negative effects, #Hit(Inflict(EFFECTS.Bleed,2))
+    ]
+  ),( 
+    name: [Sanguine Pointillism], cost: [3],
+    effects: [
+      #Gain(EFFECTS.Power,1) for every 3 #EFFECTS.Bleed on target (max 3)
+      - 40% chance to recycle attack, +20% for every negative effect on target (max 2 recycle)
+      - #Hit(Inflict((EFFECTS.Bleed,EFFECTS.NormalRandom),(1,2)))
+
+    ]
+  ),(
+    name: [Beat the Brush (#ATKTYPE.Block)], cost: [1],
+    effects: [
+      #Gain(EFFECTS.Power,1) for every #EFFECTS.Bleed on target (max 10)
+    ]
+  )
+  ),
+
+  notes: ([#bullet[Assignment Evaluation][On clash win, in target has 4+ #EFFECTS.Bleed, heal 2 SP]],),
+)
+
+#let Verso = (
+  name:        [Verso Dessendre],
+  origin:      [I Corp's Nest],
+  workHistory: [Ring Maestro],
+  rank:        [3],
+
+  health:  70, atkp:  1,
+  stagger: 30, defp:  1,
+  Sanity:  15, dodgp: 1,
+  Light:   5, level: 4,
+
+  fortitude: 3, prudence: 1, justice:   2,
+  charm:     5, insight:  2, temperance: 5,
+
+  outfit: [Verso's Clothes],
+  slashHP: 0.75, slashST: 1,
+  pierceHP: 0.75, pierceST: 1,
+  bluntHP: 1, bluntST: 2,
+  effects: [#ARMOR.Balanced],
+
+  weapons: ((
+    name: [Perfected Sword], power: [D10],
+    effects: [- #WEAPONS.Hybrid, #WEAPONS.OneHand, #ATKTYPE.Pierce
+      - #Hit(Inflict((EFFECTS.Bleed,EFFECTS.Burn),(2,2))) 
+    ],
+  ),(
+    name: [Perfected Dagger], power: [D10],
+    effects: [- #WEAPONS.Small, #WEAPONS.OneHand, #ATKTYPE.Slash
+      - #Hit(Inflict(EFFECTS.NormalRandom,3))
+    ],
+  ),),
+
+  inventory: ([10 Painted Ammo (#ATKTYPE.Pierce, #Hit(Inflict(EFFECTS.NormalRandom,2)))],),
+
+  skills: ( ( // name, cost, effects
+    name: [Painted truth], cost: [1],
+    effects: [
+      #Hit(Inflict(EFFECTS.NormalRandom,4))
+    ]
+  ),( 
+    name: [Quick repair], cost: [2],
+    effects: [
+      #SPECIAL.BleedPlus 3 & #SPECIAL.BurnPlus 2\
+       #ClashW(Inflict(SPECIAL.Cauterize,1))
+    ]
+  ),( 
+    name: [Burn the Canvas], cost: [3],
+    effects: [
+      #SPECIAL.BurnPlus 3 \
+      #Hit[#Special(SPECIAL.DarkFlame,1)]
+    ]
+  ),(
+    name: [Beat the Brush - Verso (#ATKTYPE.Block)], cost: [1],
+    effects: [
+      #Gain(EFFECTS.Power,1) for every #EFFECTS.Bleed + #EFFECTS.Burn on target (max 10)
+    ]
+  )
+  ),
+
+  notes: ([#bullet[Desperate Mang][When knows his death is soon, unlocks one #SPECIAL.Mang, which gives #EFFECTS.Power] +3],[
+  #bullet[Call of the void][Regenerates 1 Light per turn, SP is reduced by 2 per turn]],[
+    #bullet[Desperation][On melee range, loose 2 Atk Power]
+  ]),
+)
+
+#let Verso-Miror = (
+  name:        [Recto],
+  origin:      [Disctrict 9 Backstreets's Ring Laboratory],
+  workHistory: [Verso's Clone],
+  rank:        [3],
+
+  health:  70, atkp:  1,
+  stagger: 30, defp:  1,
+  Sanity:  15, dodgp: 1,
+  Light:   5, level: 4,
+
+  fortitude: 3, prudence: 1, justice:   2,
+  charm:     5, insight:  2, temperance: 5,
+
+  outfit: [Recto's Clothes],
+  slashHP: 1, slashST: 1.25,
+  pierceHP: 1, pierceST: 1.25,
+  bluntHP: 0.75, bluntST: 1.25,
+  effects: [#ARMOR.Balanced],
+
+  weapons: ((
+    name: [Mirrored Weapon], power: [???],
+    effects: [ 
+      All #WEAPONS.Melee #WEAPONS.Offensive
+      - Pierre : #ATKTYPE.Slash, #WEAPONS.OneHand #WEAPONS.Small D10 - #Hit(Inflict(EFFECTS.Bleed,2)) ; -1 to any #EFFECTS.Power
+      - Philip : #ATKTYPE.Slash, #WEAPONS.OneHand #WEAPONS.Medium D12 - #Hit(Inflict(EFFECTS.Burn,3))
+      - Yan : #ATKTYPE.Blunt, #WEAPONS.TwoHand #WEAPONS.Long D10 - #Hit(Inflict(EFFECTS.Paralysis,1)) ; +1 to any #EFFECTS.Power
+      - Argalia : #ATKTYPE.Pierce, #WEAPONS.TwoHand #WEAPONS.Medium D16 ; 
+    ],
+  ),),
+
+  inventory: ([Mirror catalyst],),
+
+  skills: ( ( // name, cost, effects
+    name: [Pierre - Butcher], cost: [1],
+    effects: [
+      #Hit(Inflict(EFFECTS.Bleed, 4)) \
+      Heal 5 Hp to self per bleed on target (max 10)
+    ]
+  ),( 
+    name: [Philip - Burn], cost: [1],
+    effects: [
+      #SPECIAL.BurnPlus 2\
+       #ClashW(Inflict(SPECIAL.Cauterize,1))
+    ]
+  ),( 
+    name: [Yan - Idealize], cost: [2],
+    effects: [
+      #Hit[#Inflict((EFFECTS.Paralysis,EFFECTS.Fragile),(2,1))]
+    ]
+  ),( 
+    name: [Argalia - Vibration], cost: [2],
+    effects: [
+      #Hit[Inflict 1 #strong("Vibration"), applying negative effects one more time before reducing count. Reduces by 1 at turn end.]
+    ]
+  ),( 
+    name: [Argalia - Impromptu], cost: [4],
+    effects: [
+      #Hit[Inflict 3 #strong("Vibration"), #SPECIAL.Overspeed. #SPECIAL.AfterEffect 2.]
+    ]
+  ),(
+    name: [Beat the Brush - Recto (#ATKTYPE.Block)], cost: [1],
+    effects: [
+      #Gain(EFFECTS.Power,1) for every different negative effect on target (max 10)
+    ]
+  )
+  ),
+
+  notes: ([#bullet[Refracted identity][At the end of each round, roll a D4 to choose identity between Pierre, Philip, Yan and Argalia. On swap, regenerate 3 Light.]
+  ],[#bullet[Duty][Protects Verso at all cost]
+  ],),
 )

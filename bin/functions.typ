@@ -1,6 +1,11 @@
 #import "keywords.typ": ATKTYPE
 
 /// General functions
+
+#let bullet(header, body) = {
+  [*#header*] + " - " + [#body]
+}
+
 #let is_in_dict(key, dict) = {
   for pair in dict.pairs() {
     if pair.first() == key {
@@ -119,3 +124,4 @@
   numbering: none,
   )]
 }
+

@@ -10,7 +10,7 @@ Explanation for the variables :
 
 #let sheet = "Hana"
 
-#let character = Zilu
+#let character = Verso-Miror
 
 #let ego-unlocked = true
 
