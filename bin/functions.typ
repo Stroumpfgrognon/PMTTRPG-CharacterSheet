@@ -119,7 +119,7 @@
     [#ATKTYPE.Slash],[#dmg_slash.at(0)],[#dmg_slash.at(1)],
     [#ATKTYPE.Pierce],[#dmg_pierce.at(0)],[#dmg_pierce.at(1)],
     [#ATKTYPE.Blunt],[#dmg_blunt.at(0)],[#dmg_blunt.at(1)],
-  ), caption: [Damage calc for #character_attacked.name ],
+  ), caption: [Damage calculation for \ #character_attacked.name ],
   supplement: [],
   numbering: none,
   )]
