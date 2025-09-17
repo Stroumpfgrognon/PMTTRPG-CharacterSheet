@@ -3,16 +3,16 @@
 #import "bin/functions.typ":full_damage_calc, diff_names, multi_sort
 
 #let lines = ((
-  Eleonore, [d6], 1, 0, 0, 0, 0, ""
+  Eleonore, [d6 J], 6, 0, 0, 0, 0, ""
 ),(
-  Clark, [d8], 3, 0, 0, 0, 0, ""
+  Clark, [d6 V], 4, 0, 0, 0, 0, ""
 ),(
-  Zilu, [23], 10, 0, 0, 0, -1, ""
+  Verso, [D6 oeil], 0 , 9, 0, 0, 0, ""
 ),(
-  Zilu, [23], 12, 0, 0, 0, -1, ""
+  Verso-Miror, [D6 oeil], 3 ,18, 23, 0, 0, ""
 ))
 
-#let quick_calc = full_damage_calc(Verso, 10)
+#let quick_calc = full_damage_calc(Verso-Miror, 18)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -------------------------------------- DO NOT MODIFY DATA BELLOW THIS POINT -------------------------------------- //

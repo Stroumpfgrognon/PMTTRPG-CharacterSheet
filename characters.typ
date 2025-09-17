@@ -547,10 +547,10 @@
   workHistory: [Ring member],
   rank:        [2],
 
-  health:  70, atkp:  1,
-  stagger: 30, defp:  1,
-  Sanity:  15, dodgp: 1,
-  Light:   5, level: 4,
+  health:  96, atkp:  2,
+  stagger: 40, defp:  3,
+  Sanity:  21, dodgp: 2,
+  Light:   5, level:3,
 
   fortitude: 1, prudence: 2, justice:    1,
   charm:     3, insight:  2, temperance: 3,
@@ -609,10 +609,10 @@
   workHistory: [Ring Maestro],
   rank:        [3],
 
-  health:  70, atkp:  1,
-  stagger: 30, defp:  1,
-  Sanity:  15, dodgp: 1,
-  Light:   5, level: 4,
+  health:  120, atkp:  3,
+  stagger: 52, defp:  5,
+  Sanity:  18, dodgp: 2,
+  Light:   6, level: 6,
 
   fortitude: 3, prudence: 1, justice:   2,
   charm:     5, insight:  2, temperance: 5,
@@ -664,7 +664,7 @@
 
   notes: ([#bullet[Desperate Mang][When knows his death is soon, unlocks one #SPECIAL.Mang, which gives #EFFECTS.Power] +3],[
   #bullet[Call of the void][Regenerates 1 Light per turn, SP is reduced by 2 per turn]],[
-    #bullet[Desperation][On melee range, loose 2 Atk Power]
+    #bullet[Desperation][On melee range, -2 #EFFECTS.Power]
   ]),
 )
 
@@ -674,10 +674,10 @@
   workHistory: [Verso's Clone],
   rank:        [3],
 
-  health:  70, atkp:  1,
-  stagger: 30, defp:  1,
-  Sanity:  15, dodgp: 1,
-  Light:   5, level: 4,
+  health:  120, atkp:  3,
+  stagger: 52, defp:  5,
+  Sanity:  18, dodgp: 2,
+  Light:   6, level: 6,
 
   fortitude: 3, prudence: 1, justice:   2,
   charm:     5, insight:  2, temperance: 5,
