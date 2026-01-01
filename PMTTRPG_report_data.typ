@@ -8,9 +8,9 @@ Explanation for the variables :
 - Calculate character secondary stats (including level and rank) from the character's main 6 stats instead of taking them from the sheet (useful for non-bosses)
 */
 
-#let sheet = "Hana"
+#let sheet = "RCorp"
 
-#let character = Verso
+#let character = Clark
 
 #let ego-unlocked = true
 
@@ -68,7 +68,7 @@ Explanation for the variables :
 #let rank = character.rank
 
 #if auto-calculate-stats {
-  level = (statsum - 6) / 2
+  level = statsum/6
   rank = calc.floor((level + 3) / 3)
   health = 72 + (character.fortitude * 8) + rank * 8
   stagger = 20 + (character.charm * 4) + rank * 4
