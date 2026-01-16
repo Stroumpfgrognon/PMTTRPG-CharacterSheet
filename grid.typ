@@ -1,4 +1,4 @@
-#import "@preview/cetz:0.3.2"
+#set page(margin: 1pt, paper: "a4")
 
 #let generate-line(origin, finish, thick) = {
   let hyp = (finish.at(0) - origin.at(0), finish.at(1) - origin.at(1))
@@ -32,23 +32,67 @@
   return res
 }
 
-#let mark1 = rect(height: 50pt, width: 50pt, fill: green)
+////////////////////////////////////////////////////////////// EDIT HERE
 
-#let mark1-coords = generate-line((1, 1), (9, 3), false)
-
-#let mark1s = generate-cells(mark1, mark1-coords)
-
-#let char-grid = table(
-  columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
-  rows: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
-  ..mark1s,
+#let marks = (
+  (square(height: 50pt, fill: green), "Crate"),
+  (circle(height: 40pt, fill: blue), "Water Barrel"),  
 )
 
-#page(margin: 0cm, paper: "a4")[
+#let mark1s = generate-cells(marks.at(0).at(0), generate-line((0, 0), (19, 13), true))
 
-  // A simple grid that fits dies to do combat, might have to reduce the amount of cells for miniatures
+#let mark2s = generate-cells(marks.at(1).at(0), generate-line((5, 5), (12, 7), false))
 
-  #char-grid
+#let marksCells = mark2s+mark1s // Cells will be filtered, first has priority
+
+// typst watch --pages 1-3 .\grid.typ "grid-{p}.svg" to generate svg grid
+// typst watch "grid.typ" for pdf
+
+///////////////////////////////////////////////////////////// END EDIT HERE
+
+#let coordinates = ()
+#let cleanedMarksCells = ()
+
+#for mark in marksCells {
+  if((not (mark.x, mark.y) in coordinates)) {
+    coordinates.push((mark.x, mark.y))
+    cleanedMarksCells.push(mark)
+  }
+}
+
+#let markP1 = cleanedMarksCells.filter(cell => cell.x <= 9 and cell.y <= 13)
+#let markP2 = cleanedMarksCells.filter(cell => cell.x > 9 and cell.y <= 13)
+
+#for i in range(markP2.len()) {
+  let cell = markP2.at(i)
+  markP2.at(i) = table.cell(
+    cell.body,
+    x: cell.x - 10,
+    y: cell.y,
+  )
+}
+
+#let char-grid = table(
+  align: center+horizon,
+  columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+  rows: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+  ..markP1,
+)
+
+#let char-grid-2 = table(
+  align: center+horizon,
+  columns: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+  rows: (1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr, 1fr),
+  ..markP2,
+)
 
 
-]
+#char-grid
+#char-grid-2
+
+#page(margin:0.3cm,align(bottom+left,table(
+  align: center+horizon,
+  columns: (40pt, 60pt),
+  [Icon], [Item],
+  ..for mark in marks { ([#mark.at(1)], [#mark.at(0)]) },
+)))

@@ -8,7 +8,7 @@ Explanation for the variables :
 - Calculate character secondary stats (including level and rank) from the character's main 6 stats instead of taking them from the sheet (useful for non-bosses)
 */
 
-#let sheet = "RCorp"
+#let sheet = "Hana"
 
 #let character = Clark
 
@@ -68,8 +68,9 @@ Explanation for the variables :
 #let rank = character.rank
 
 #if auto-calculate-stats {
-  level = statsum/6
-  rank = calc.floor((level + 3) / 3)
+  if (type(statsum) == int){
+  rank = calc.floor(statsum/6)
+  level = statsum/2-3
   health = 72 + (character.fortitude * 8) + rank * 8
   stagger = 20 + (character.charm * 4) + rank * 4
   sanity = 15 + (character.prudence * 3)
@@ -77,6 +78,7 @@ Explanation for the variables :
   atkp = rank
   defp = character.temperance
   dodgp = character.insight
+  }
 }
 
 #place(dx: stats1Left, dy: stats13Top + 0 * stats13Dy, CalculatedStats(health))
