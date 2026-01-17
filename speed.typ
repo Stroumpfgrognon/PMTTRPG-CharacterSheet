@@ -1,4 +1,4 @@
-#import "characters.typ": *
+#import "characters/others.typ": *
 #import "bin/functions.typ": diff_names
 
 #let turn = 8

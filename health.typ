@@ -1,4 +1,4 @@
-#import "characters.typ":*
+#import "characters/others.typ":*
 #import "bin/keywords.typ": ATKTYPE
 #import "bin/functions.typ":full_damage_calc, diff_names, multi_sort
 

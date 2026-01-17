@@ -1,4 +1,6 @@
-#import "characters.typ": *
+#import "characters/others.typ" as others
+#import "characters/players.typ" as players
+#import "characters/foes.typ" as foes
 
 /*
 Explanation for the variables :
@@ -10,7 +12,7 @@ Explanation for the variables :
 
 #let sheet = "Hana"
 
-#let character = Clark
+#let character = foes.Sweeper
 
 #let ego-unlocked = true
 
@@ -78,6 +80,9 @@ Explanation for the variables :
   atkp = rank
   defp = character.temperance
   dodgp = character.insight
+  if(rank >=6){
+    rank = "EX"
+  }
   }
 }
 

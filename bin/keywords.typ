@@ -43,6 +43,7 @@
   Sinking: strong("Sinking"),
   Haste: strong("Haste"),
   Bind: strong("Bind"),
+  Strength: strong("Strength"),
   Aggro: strong("Aggro"),
   ClashPower: strong("Clash Power"),
   Power: strong("Power"),
@@ -53,6 +54,7 @@
   DeathriteFissure: strong("Deathrite[Fissure]"),
   StriderMao: strong("Strider[Mao]"),
   DeepChill: strong("Deep Chill"),
+  Resilience: strong("Resilience"),
 )
 
 #let SPECIAL = (
@@ -64,10 +66,53 @@
   BurnPlus: strong("Burn+"),
   BleedPlus: strong("Bleed+"),
   TremorPlus: strong("Tremor+"),
-  SinkingPlus: strong("Sinking+"),
+  SinkingPause: strong("Sinking Pause"),
+  SinkingDeluge: strong("Sinking Deluge"),
+  TransferSinking: strong("Transfer Sinking"),
+  AbsorbSinking: strong("Absorb Sinking"),
   FrostbitePlus: strong("Frostbite+"),
   Overspeed : strong("Overspeed"),
   AfterEffect : strong("After Effect"),
+  Instant: strong("Instant"),
+  LoweredGuard: strong("Lowered Guard"),
+  SingleStrike: strong("Single Strike"),
+  OvercomingCrisis: strong("Overcoming Crisis"),
+  Delay: strong("Delay"),
+  Unlock: strong("Unlock"),
   Shin: strong("Shin (心)"),
   Mang: strong("Mang (望)"),
+)
+
+#let BODY = (
+  Health: emph("Health"),
+  Stagger: emph("Stagger"),
+  Sanity: emph("Sanity"),
+  Light: emph("Light"),
+  Damage: emph("Damage"),
+  StaggerDamage: emph("Stagger Damage"),
+)
+
+
+#let SKILL = (
+  Offensive: text(fill:red,emph("Offensive skill")),
+  Defensive: text(fill:rgb(0,128,0),emph("Defensive skill")),
+  Dodge: text(fill:blue,emph("Dodge skill")),
+)
+
+#let WEAPON = (
+  MeleeShort : emph[[M] Short],
+  MeleeMedium : emph[[M] Medium],
+  MeleeLong : emph[[M] Long],
+  MeleeSturdy : emph[[M] Sturdy],
+  RangedLowCal : emph[[R] Low Caliber],
+  RangedHighCal : emph[[R] High Caliber],
+  RangedReactive : emph[[R] Reactive],
+  RangedHybrid : emph[[M/R] Hybrid],
+  MeleeVersatile : emph[[M] Versatile],
+  RangedRecoil : emph[[R] Recoil],
+  RangedInnate : emph[[M/R] Innate],
+  Offensive : emph("Offensive"),
+  Defensive : emph("Defensive"),
+  OneHanded: emph("One handed"),
+  TwoHanded: emph("Two handed")
 )

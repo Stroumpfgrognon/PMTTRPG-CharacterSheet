@@ -148,7 +148,7 @@
   } else [Gain #count #effect]
 }
 
-#let Inflict(effect, count) = {
+#let Inflict(effect, count, self: false) = {
   if type(effect) == array {
     [Inflict ]
     for i in range(effect.len() - 2) {
@@ -161,9 +161,12 @@
     }
     [and #count.at(i) #effect.at(i)]
   } else [Inflict #count #effect]
+  if (self) {
+    [ on self]
+  }
 }
 
-#let Special(effect, count) = {
+#let Special(effect, count, self: false) = {
   if type(effect) == array {
     [Applies ]
     for i in range(effect.len() - 2) {
@@ -177,6 +180,37 @@
     [and #count.at(i) #effect.at(i)]
   } else [Applies #count #effect]
 }
+
+#let Recover(effect, count) = {
+  if type(effect) == array {
+    [Recover ]
+    for i in range(effect.len() - 2) {
+      [#count.at(i) #effect.at(i), ]
+    }
+    let i = effect.len() - 2
+    if i >= 0 {
+      [#count.at(i) #effect.at(i) ]
+      i += 1
+    }
+    [and #count.at(i) #effect.at(i)]
+  } else [Recovers #count #effect]
+}
+
+#let Heal(effect, count) = {
+  if type(effect) == array {
+    [Heals ]
+    for i in range(effect.len() - 2) {
+      [#count.at(i) #effect.at(i), ]
+    }
+    let i = effect.len() - 2
+    if i >= 0 {
+      [#count.at(i) #effect.at(i) ]
+      i += 1
+    }
+    [and #count.at(i) #effect.at(i)]
+  } else [Heals #count #effect]
+}
+
 
 #let CondEffect(cond, effect) = {
   [If #cond : #effect \ ]
