@@ -12,7 +12,7 @@ Explanation for the variables :
 
 #let sheet = "Hana"
 
-#let character = foes.Sweeper
+#let character = foes.Silver
 
 #let ego-unlocked = true
 
@@ -73,7 +73,7 @@ Explanation for the variables :
   if (type(statsum) == int){
   rank = calc.floor(statsum/6)
   level = statsum/2-3
-  health = 72 + (character.fortitude * 8) + rank * 8
+  health = 64 + (character.fortitude * 8) + rank * 32
   stagger = 20 + (character.charm * 4) + rank * 4
   sanity = 15 + (character.prudence * 3)
   light = 3 + rank
@@ -145,7 +145,7 @@ Explanation for the variables :
   let egoLeft = 319pt
   let egoPassiveTop = 105pt
   let egoSkillTop = 298pt
-  place(dx: egoLeft + 2pt, dy: egoTitleTop, image(character.ego.nameplate, width: 40%))
+  place(dx: egoLeft + 2pt, dy: egoTitleTop, character.ego.nameplate)
   place(dx: egoLeft, dy: egoPassiveTop, EgoPassive(character.ego.passives))
   for i in range(character.ego.skills.len()) {
     let skill = character.ego.skills.at(i)

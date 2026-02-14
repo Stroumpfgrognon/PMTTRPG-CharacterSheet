@@ -15,7 +15,7 @@
   Sanity:  24, dodgp: 3,
   Light:   5, level: 3,
 
-  fortitude: 4, prudence: 3, justice:    1,
+  fortitude: 5, prudence: 4, justice:    1,
   charm:     1, insight:  3, temperance: 0,
 
   outfit: [Triple R Armor (Ram)],
@@ -63,8 +63,8 @@
   Sanity:  [], dodgp: [],
   Light:   [], level: [],
 
-  fortitude: 3, prudence: 2, justice:    3,
-  charm:     1, insight:  2, temperance: 1,
+  fortitude: 4, prudence: 2, justice:    3,
+  charm:     1, insight:  3, temperance: 1,
 
   outfit: [Fixer flowy dress shirt],
   slashHP: [1], slashST: [1],

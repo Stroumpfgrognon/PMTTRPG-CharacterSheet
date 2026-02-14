@@ -1,5 +1,5 @@
-#import "../bin/elements.typ": ClashL, ClashW, CondEffect, Gain, Heads, Hit, Inflict, Recover, Special, Tails, Use
-#import "../bin/keywords.typ": ARMOR, ATKTYPE, BODY, EFFECTS, SKILL, SPECIAL, WEAPON, WEAPONS
+#import "../bin/elements.typ": * 
+#import "../bin/keywords.typ": *
 #import "../bin/functions.typ": bullet
 
 
@@ -176,11 +176,11 @@
 
   weapons: ( (
     name: [Mimicry], power: [D20],
-    effects: [#WEAPON.Offensive #WEAPON.MeleeMedium - #ATKTYPE.Slash \
+    effects: [#WEAPON.OffensiveOne #WEAPON.MeleeMedium - #ATKTYPE.Slash \
               A metamorph weapon, able to change damage type depending on the skill used.],
   ), (
     name: [Kitchen gun], power: [D10],
-    effects: [#WEAPON.Offensive #WEAPON.RangedLowCal - #ATKTYPE.Pierce \
+    effects: [#WEAPON.OffensiveOne #WEAPON.RangedLowCal - #ATKTYPE.Pierce \
               A gun able to clean every dishes in a single bullet, which is all the ammo it has.],
   ), (
     name: [], power: [],
@@ -213,7 +213,7 @@
   ), ),
 
     ego : (
-      nameplate : "E.G.Os/RedMist.png",
+      nameplate : EgoNameplate("../E.G.Os/RedMist.png"),
       passives:(
         [The Red Mist's hunger - Gains +1 #EFFECTS.Power on turn start for each ennemy killed (max 5 stacks)],[
           Gebura's Prowess - Gains +1 #EFFECTS.Power for every 2 Speed difference with attacked ennemy (max 5)

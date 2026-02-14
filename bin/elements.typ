@@ -16,7 +16,7 @@
 #let Work(body) = {
   set align(horizon)
   set text(size: size_big)
-  block(width: 21%, height: 1.5%, resize-text(body))
+  block(width: 24.5%, height: 1.5%, resize-text(body))
 }
 
 #let Rank(body) = {
@@ -43,7 +43,7 @@
 }
 
 #let ArmorEffects(body) = {
-  block(width: 26%, height: 12%, resize-text(body))
+  block(width: 25%, height: 12%, resize-text(body))
 }
 
 #let ArmorStat(body) = {
@@ -211,7 +211,31 @@
   } else [Heals #count #effect]
 }
 
+#let Give(effect, count) = {
+  if type(effect) == array {
+    [Gives ]
+    for i in range(effect.len() - 2) {
+      [#count.at(i) #effect.at(i), ]
+    }
+    let i = effect.len() - 2
+    if i >= 0 {
+      [#count.at(i) #effect.at(i) ]
+      i += 1
+    }
+    [and #count.at(i) #effect.at(i)]
+  } else [Give #count #effect]
+}
+
 
 #let CondEffect(cond, effect) = {
   [If #cond : #effect \ ]
+}
+
+#let EgoNameplate(src) = {
+  image(src, width: 40%)
+}
+
+#let EgoTextNameplate(input) = {
+  set align(center + horizon)
+  block(align(horizon+center,text(size:25pt,weight:"black",input)),height: 70pt,width:38%)
 }

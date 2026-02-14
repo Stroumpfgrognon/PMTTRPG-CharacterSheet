@@ -1,5 +1,5 @@
-#import "../bin/elements.typ":(Hit,ClashW,ClashL,Gain,Inflict, Special, Recover,CondEffect,Use, Heads, Tails )
-#import "../bin/keywords.typ": ATKTYPE, EFFECTS, WEAPONS, ARMOR, SPECIAL, BODY, SKILL, WEAPON
+#import "../bin/elements.typ": * 
+#import "../bin/keywords.typ": *
 #import "../bin/functions.typ": bullet
 
 
@@ -251,28 +251,28 @@
 
 #let RingPointillist = (
   name:        [Ring Pointillist Student],
-  origin:      [I Corp's Backstreets],
+  origin:      [???],
   workHistory: [Ring member],
-  rank:        [2],
+  rank:        [],
 
   health:  96, atkp:  2,
   stagger: 40, defp:  3,
   Sanity:  21, dodgp: 2,
   Light:   5, level:3,
 
-  fortitude: 1, prudence: 2, justice:    1,
-  charm:     3, insight:  2, temperance: 3,
+  fortitude: 1, prudence: 4, justice:    1,
+  charm:     4, insight:  6, temperance: 2,
 
   outfit: [Ring Student garment],
-  slashHP: 1, slashST: 1,
+  slashHP: 2, slashST: 2,
   pierceHP: 0.5, pierceST: 0.5,
-  bluntHP: 2, bluntST: 2,
+  bluntHP: 1, bluntST: 1,
   effects: [],
 
   weapons: ((
-    name: [Fighting Brush], power: [D12],
-    effects: [- #WEAPONS.Medium, #WEAPONS.OneHand, #ATKTYPE.Pierce
-      - #Hit(Inflict(EFFECTS.NormalRandom,3))
+    name: [Fighting Brush], power: [D12 + 1],
+    effects: [#WeaponEffectDesc((WEAPON.MeleeMedium, WEAPON.OffensiveOne, ATKTYPE.Pierce))
+      - #ClashW(Inflict(EFFECTS.NormalRandom,3))
     ],
   ),),
 
@@ -281,34 +281,34 @@
   skills: ( ( // name, cost, effects
     name: [Paint Over], cost: [1],
     effects: [
-      #CondEffect([Target has 6+ #EFFECTS.Bleed], [#EFFECTS.ClashPower +1])
-      - #Heads(Inflict(EFFECTS.NormalRandom,2))
-      - #Hit(Inflict(EFFECTS.Bleed,2))
+      #SKILL.Offensive
+      - #ClashW[#Inflict(EFFECTS.NormalRandom,3)]
     ]
   ),( 
     name: [Hematic Coloring], cost: [2],
-    effects: [
-      #Gain(EFFECTS.Power,1) for every 3 #EFFECTS.Bleed on target (max 3)
-      - #Hit(Inflict((EFFECTS.Bleed,EFFECTS.NormalRandom),(1,2)))
-      - If target has 3+ type of negative effects, #Hit(Inflict(EFFECTS.Bleed,2))
+    effects: [ #SKILL.Offensive
+      - #ClashW[Converts 1/2 of each other #EFFECTS.Normal stack into Bleed]
+      - #Inflict(EFFECTS.Bleed,2)
     ]
   ),( 
     name: [Sanguine Pointillism], cost: [3],
     effects: [
-      #Gain(EFFECTS.Power,1) for every 3 #EFFECTS.Bleed on target (max 3)
-      - 40% chance to recycle attack, +20% for every negative effect on target (max 2 recycle)
-      - #Hit(Inflict((EFFECTS.Bleed,EFFECTS.NormalRandom),(1,2)))
+      - #SPECIAL.MultiHit 2
+      - Clash win effects retrigger for each strike
 
     ]
   ),(
-    name: [Beat the Brush (#ATKTYPE.Block)], cost: [1],
-    effects: [
-      #Gain(EFFECTS.Power,1) for every #EFFECTS.Bleed on target (max 10)
+    name: [Beat the Brush], cost: [1],
+    effects: [ #SKILL.Dodge
+      - 2 Bleed bonus
+      - #ClashW(Inflict(EFFECTS.Bleed,2))
     ]
   )
   ),
 
-  notes: ([#bullet[Assignment Evaluation][On clash win, in target has 4+ #EFFECTS.Bleed, heal 2 SP]],),
+  notes: ([== Augmentations :
+  - Bleed bonus
+  - Inflict Bleed 2],),
 )
 
 #let Verso = (
@@ -471,7 +471,7 @@
 
   weapons: ( (
     name: [Sweeper Scythe], power: [D10],
-    effects: [#WEAPON.Offensive #WEAPON.MeleeShort #ATKTYPE.Pierce
+    effects: [#WEAPON.OffensiveOne #WEAPON.MeleeShort #ATKTYPE.Pierce
     - #Hit(Inflict(EFFECTS.Bleed,3))
     ],),),
 
@@ -484,7 +484,7 @@
     - #Hit(Recover(BODY.Health,2))]
   ), (
     name: [Resilience], cost: [2],
-    effects: [#SKILL.Defensive
+    effects: [#SKILL.Block
     - #Use(Gain(EFFECTS.Resilience,4))]
   ), (
     name: [More fuel], cost: [1],
@@ -527,7 +527,7 @@
     - #Hit(Inflict(EFFECTS.Sinking,"N+1")) on self and others (depending on #SPECIAL.Unlock level)],
   ), (
     name: [Prescript sword], power: [2D8],
-    effects: [#WEAPON.Offensive #WEAPON.TwoHanded  \ #WEAPON.MeleeLong #ATKTYPE.Slash
+    effects: [#WEAPON.OffensiveTwo  \ #WEAPON.MeleeLong #ATKTYPE.Slash
     - #Use(Inflict(EFFECTS.Sinking,4,self:true))
     - May only be used at #SPECIAL.Unlock 4],
   ),),
@@ -545,7 +545,7 @@
       - #SPECIAL.SinkingPause]
   ), (
     name: [Chains of past sins], cost: [1],
-    effects: [#SKILL.Defensive
+    effects: [#SKILL.Block
     - #SPECIAL.AbsorbSinking 2
     - #SPECIAL.LoweredGuard]
   ), (
@@ -565,7 +565,7 @@
       ),
       skills:((
         name: [Will of the City], cost: [0],
-        effects: [#SKILL.Defensive
+        effects: [#SKILL.Block
           - Usable at Unlock 3 in a Panicked state
         - Fully restores Light and allows the use of Distorted Blade]
         ),(
@@ -593,4 +593,323 @@
 
   notes: ([May use #SPECIAL.Shin once Emotion starts to increase],[Special Panic : The Will of the City.
   - Defensive dice lose 5 Power]),
+)
+
+#let IndexProselyte = (
+  name:        [Index Proselyte],
+  origin:      [???],
+  workHistory: [???],
+  rank:        [],
+
+  health:  [], atkp:  [],
+  stagger: [], defp:  [],
+  Sanity:  [], dodgp: [],
+  Light:   [], level: [],
+
+  fortitude: 1, prudence: 3, justice:    4,
+  charm:     0, insight:  4, temperance: 6,
+
+  outfit: [Index Gown],
+  slashHP: [1], slashST: [1],
+  pierceHP: [1], pierceST: [1],
+  bluntHP: [1], bluntST: [0.5],
+  effects: [#ARMOR.Swift
+  - Additional Reaction 1],
+
+  weapons: ( (
+    name: [Prescripted blade], power: [D12 + 1],
+    effects: [
+      #WEAPON.MeleeMedium #WEAPON.OffensiveTwo
+      Each turn, weapon of all engaged Proselytes changes type depending on D6 (1-2 Slash, 3-4 Pierce, 5-6 Blunt)
+      - Gains 1 Clashing power against the same type
+      - #ClashW[#Inflict(EFFECTS.Sinking,2)]],
+  ),),
+
+  inventory: (),
+
+  skills: ( (
+    name: [Will of the Prescript], cost: [0],
+    effects: [- #SKILL.Block
+    - #ClashW[#SPECIAL.SinkingPause]]
+  ), (
+    name: [Undertake Prescript], cost: [1],
+    effects: [#SKILL.Offensive
+      - #SPECIAL.AbsorbSinking 2 (Gives Sinking absorbed/2 #EFFECTS.Strength and #EFFECTS.Endurance next scene (up to potency))]
+  ), (
+    name: [Execute], cost: [2],
+    effects: [#SKILL.Offensive #SPECIAL.Delay
+    - #SPECIAL.TransferSinking 4
+    - #SPECIAL.Instant #EFFECTS.Sinking, #SPECIAL.SinkingDeluge] 
+  ), (
+    name: [Sense Quarry], cost: [1],
+    effects: [#SKILL.Offensive
+    - #ClashW(Inflict(EFFECTS.Sinking,3))]
+  ),),
+
+  notes: ([== Augments
+  - Caged Endurance
+  - Sinking bonus & resistance],),
+)
+
+#let MiddleBrother = (
+  name:        [Middle Little Brother/Sister],
+  origin:      [???],
+  workHistory: [???],
+  rank:        [],
+
+  health:  [], atkp:  [],
+  stagger: [], defp:  [],
+  Sanity:  [], dodgp: [],
+  Light:   [], level: [],
+
+  fortitude: 6, prudence: 1*0, justice:    6,
+  charm:     4, insight:  0, temperance: 2,
+
+  outfit: [Middle Showy attire],
+  slashHP: [0.5], slashST: [1],
+  pierceHP: [1], pierceST: [1],
+  bluntHP: [1.5], bluntST: [1],
+  effects: [#ARMOR.Balanced
+  - #SPECIAL.DamageResistance 2
+  - #SPECIAL.FashionableThreads 2],
+
+  weapons: ( (
+    name: [Little brother chains], power: [D10],
+    effects: [#WeaponEffectDesc((WEAPON.MeleeShort,WEAPON.OffensiveOne,ATKTYPE.Blunt)) 
+    - #ClashW(Inflict(EFFECTS.Paralysis,2))
+    - Dual wielding this weapon (fists)],
+  ), ),
+
+  inventory: (),
+
+  skills: ( (
+    name: [COME AT ME], cost: [1],
+    effects: [#SKILL.Block
+    - #ClashL[#Gain(EFFECTS.Strength,1), #Recover(BODY.Stagger,2)]]
+  ), (
+    name: [Vengeance], cost: [3],
+    effects: [- #SKILL.Offensive
+    - #ClashW[#Inflict(EFFECTS.Feeble,2), #Recover(BODY.Stagger,2)]] 
+  ), (
+    name: [Call for Vengeance], cost: [2],
+    effects: [- #SKILL.Offensive
+    - #ClashW(Give(EFFECTS.Strength,3)) spread between allies
+    ]
+  ), (
+    name: [], cost: [],
+    effects: []
+  ), ),
+
+  notes: ([== Augments
+  - Gains 1 #EFFECTS.Strength per 25% of HP lost (max 3) (Activate Strength) 
+  - Gains 3 #EFFECTS.Strength on Takedown],),
+)
+
+#let ThumbSoldato = (
+  name:        [Thumb Soldato],
+  origin:      [???],
+  workHistory: [???],
+  rank:        [],
+
+  health:  [], atkp:  [],
+  stagger: [], defp:  [],
+  Sanity:  [], dodgp: [],
+  Light:   [], level: [],
+
+  fortitude: 2, prudence: 6, justice:    1,
+  charm:     1, insight:  4, temperance: 4,
+
+  outfit: [Soldato garnment],
+  slashHP: [1], slashST: [1],
+  pierceHP: [1], pierceST: [1],
+  bluntHP: [0.5], bluntST: [1],
+  effects: [#ARMOR.Balanced
+  - Enemy power -1
+  - #ClashW(Inflict(EFFECTS.Tremor,1))
+  ],
+
+  weapons: ( (
+    name: [Soldato Rifle], power: [D12 + 2],
+    effects: [#WeaponEffectDesc((WEAPON.RangedReactive,WEAPON.OffensiveTwo,ATKTYPE.Pierce))
+    - Dice max +2
+    - #ClashW(Inflict(EFFECTS.Tremor,1))],
+  ), (
+    name: [Bayonette], power: [D10 + 1],
+    effects: [#WeaponEffectDesc((WEAPON.MeleeShort,WEAPON.OffensiveOne,ATKTYPE.Pierce))],
+  ),),
+
+  inventory: ([5 Burning bullets],[5  Frost bullets (inflicts Paralysis & Disarm)], [5 Armor piercing bullets]),
+
+  skills: ( (
+    name: [Impact fire], cost: [3],
+    effects: [#SKILL.Offensive
+      - #SPECIAL.Overheat
+      - #ClashW(Inflict(EFFECTS.Tremor,5)) ]
+  ), (
+    name: [Disarming shot], cost: [1],
+    effects: [#SKILL.Offensive
+    - #SPECIAL.TremoringNerves]
+  ), (
+    name: [Skillful shot], cost: [0],
+    effects: [#SKILL.Offensive
+    - #SPECIAL.TremorPlus 3
+    - #SPECIAL.TremorSlam 1]
+  ), (
+    name: [Headshot], cost: [2],
+    effects: [#SKILL.Offensive
+    - #SPECIAL.TremorBoost
+    - #SPECIAL.TremorReversal
+    - #SPECIAL.TremorShock
+    ]
+  ), ),
+
+  notes: (
+    [== Augments
+    - First strike 3 
+    - Reposition 5],
+  ),
+)
+
+#let Maximus = (
+  name:        [Maximus],
+  origin:      [???],
+  workHistory: [Thumb Capo],
+  rank:        [],
+
+  health:  [], atkp:  [],
+  stagger: [], defp:  [],
+  Sanity:  [], dodgp: [],
+  Light:   [], level: [],
+
+  fortitude: 6, prudence: 3, justice:    4,
+  charm:     3, insight:  4, temperance: 4,
+
+  outfit: [Capo suit and tie],
+  slashHP: [1], slashST: [1],
+  pierceHP: [0.5], pierceST: [1],
+  bluntHP: [1], bluntST: [0.5],
+  effects: [#ARMOR.Balanced
+  - Enemy power -1
+  - #ClashW(Inflict(EFFECTS.Tremor,2))
+  ],
+
+  weapons: ( (
+    name: [Long Gunblade], power: [D12 + 2],
+    effects: [#WeaponEffectDesc((WEAPON.MeleeLong,WEAPON.OffensiveTwo,ATKTYPE.Blunt))
+    - Dice max +2
+    - #ClashW(Inflict(EFFECTS.Tremor,2))
+    - Can fire bullets like a firearm to increase melee effects],
+  ),),
+
+  inventory: ([5 #AMMO.Burning],[5 #AMMO.Frost], [5 #AMMO.ArmorPiercing]),
+
+  skills: ( (
+    name: [Forceful Pushback], cost: [3],
+    effects: [#SKILL.Offensive
+      - #SPECIAL.TremorSlam 5
+      - #SPECIAL.TremorPlus 3
+      - #SPECIAL.Instant #EFFECTS.Tremor ]
+  ), (
+    name: [Disarming strike], cost: [1],
+    effects: [#SKILL.Offensive
+    - #SPECIAL.TremoringNerves
+    - #SPECIAL.TremorPlus 2]
+  ), (
+    name: [Capo Stance], cost: [0],
+    effects: [#SKILL.Offensive
+    - #SPECIAL.TremorReversal
+    - #SPECIAL.TremorPlus 2]
+  ), (
+    name: [Authority], cost: [0],
+    effects: [#SKILL.Block
+    - #SPECIAL.TremorPause
+    - #SPECIAL.TremorPlus 2
+    ]
+  ), (
+    name: [Gunpowder smoke], cost: [0],
+    effects: [#SKILL.Dodge
+    - #SPECIAL.SlipPast
+    - #Recover(BODY.Stagger,2)
+    ]
+  ),),
+
+  notes: (
+    [== Augments
+    - #AUGMENT.Momentum 5
+    - #AUGMENT.CavalryCharge],
+  ),
+)
+
+#let Silver = (
+  name:        [Silver (Distorted)],
+  origin:      [Q Corp's Nest],
+  workHistory: [Hana association East section 3],
+  rank:        [],
+
+  health:  [], atkp:  [],
+  stagger: [], defp:  [],
+  Sanity:  [], dodgp: [],
+  Light:   [], level: [],
+
+  fortitude: 4, prudence: 3, justice:    4,
+  charm:     0, insight:  4, temperance: 3,
+
+  outfit: [Distorted flesh],
+  slashHP: 1, slashST: 1,
+  pierceHP: 1, pierceST: 1,
+  bluntHP: 1, bluntST: 1,
+  effects: [],
+
+  weapons: ( (
+    name: [The Clock's Hands], power: [D12],
+    effects: [#ClashW(Inflict(EFFECTS.Bind,2))],
+  ), ),
+
+  inventory: (),
+
+  skills: ( (
+    name: [Geon of Four Trigrams], cost: [0],
+    effects: [#SKILL.OnPlay
+      - #Gain(EFFECTS.Strength,1) this turn
+    - Deal 2 more Damage and ST Damage this turn]
+  ), (
+    name: [Gon of Four Trigrams], cost: [0],
+    effects: [#SKILL.OnPlay
+      - #Gain(EFFECTS.Endurance,1) this turn
+    - Take 30% less damage and ST damage this turn]
+  ),(
+    name: [Ri of Four Trigrams], cost: [0],
+    effects: [#SKILL.OnPlay
+      - Gain an additional reaction this turn]
+  ),(
+    name: [Gam of Four Trigrams], cost: [0],
+    effects: [#SKILL.OnPlay
+      - #Recover(BODY.Light,1)]
+  ), ),
+
+  ego : (
+      nameplate : EgoTextNameplate[The Clock Tower],
+      passives:(
+        [#bullet[Time Manipulation][Depending on behavior, limits actions in turn to :
+  - 1 and 1 SQR 
+  - 6 real time seconds]
+        ],[
+          Can teleport to players once per turn
+        ]
+      ),
+      skills:((
+        name: [Timestop], cost: [3],
+        effects: [Adds an additional action at the end of Turn and sets own speed to 0 for this turn. If not staggered, deals two unclashable attacks on every player.]
+        ),(
+          name: [Minute hand], cost: [0],
+          effects: [Rolls the current minute time +(0-1) for the next attack. If answered during the correct minute, clash loses, otherwise wins.]
+        ),
+        (
+          name: [Seconds hand], cost: [0],
+          effects: [Rolls on D12. Attack needs to be answered during the correct second to win the clash, otherwise loses.]
+        )
+      ),
+    ),
+
+  notes: (),
 )
