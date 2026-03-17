@@ -33,6 +33,11 @@
   Dodge: emph("Dodge"),
 )
 
+#let ROLL = (
+  DiceMax: strong("Dice Max"),
+  DicePower: strong("Dice Power"),
+)
+
 #let EFFECTS = (
   Rupture: strong("Rupture"),
   Bleed: strong("Bleed"),
@@ -65,6 +70,9 @@
 )
 
 #let SPECIAL = (
+  PaddedClothing : strong("Padded Clothing") + [ (When Combat begins, gain 3N Temporary HP)],
+  AdditionalBlock : strong("Additional Block"),
+  ExtraDamageType: strong("Extra Damage Type"),
   DarkFlame: strong("Dark Flame"),
   BrokenHeart: strong("Broken Heart"),
   Cauterize: strong("Cauterize"),
@@ -72,6 +80,14 @@
   SmokeBurn: strong("Smoke-Burn"),
   BurnPlus: strong("Burn+"),
   BleedPlus: strong("Bleed+"),
+  BleedResistance: strong("Bleed Resistance"),
+  BleedVigor: strong("Bleed Vigor") + [ (If the character has [2 + N] or more Bleed stacks, increase the Dice Power by N. If you have an effect of the same name on your Augment, increase the amount of Bleed required by 1.)],
+  DelayedBleed: strong("Delayed Bleed") + [ (Apply N Bleed to the target next round. This is not affected by Bleed+.)],
+  DoubleEdged: strong("Double Edged") + [ (On Clash Win, inflict 2 Bleed to the target. On Clash Lose, the character takes 2 Bleed.)],
+  Hemorrhage: strong("Hemorrhage") + [ (Any Bleed on the target is not reduced the next N times it activates. This does apply to Bleed that activated as a result of this clash, and counts as one instance of activation. This also prevents Bleed from being reduced by Reduce Status or other effects that immediately activate Bleed. When immediately activating Bleed, do not halve Bleed and remove 1 stack of this effect.)],
+  TendonSlice: strong("Tendon Slice") + [ (The next time the target takes non-forced movement, their Bleed activates.)],
+  BleedBonus: strong("Bleed Bonus") + [ (If the target has [2 + N] or more Bleed stacks, increase the Dice Power by N)],
+  VampiricGash: strong("Vampiric Gash") + [ (Restore HP equal to the amount of Bleed the target had at the time of clash.. If the target did not clash with this skill, any Bleed on the target is activated immediately, reducing by half as normal.)],
   TremorPlus: strong("Tremor+"),
   SinkingPause: strong("Sinking Pause"),
   SinkingDeluge: strong("Sinking Deluge"),
@@ -100,6 +116,10 @@
   TremorShock: strong("Tremor Shock") + [ (On Tremor Burst, inflict 3 Bind to the target next round.)],
   TremorPause: strong("Tremor Pause") + [ (On Clash Win, do not Tremor Burst, and consider all currently active Tremor as instead applying next Round. It is no longer active for the given Round.)],
   SlipPast: strong("Slip Past") + [ (Swap places with the target. This movement does not provoke Opportunity Attacks for either the character or the target.)],
+  IncreaseCritical : strong("Increase Critical"),
+  CriticalConversion : strong("Critical Conversion") + [ (If the character would have 10 Poise as a result of this clash, reduce Poise to 1 and increase Critical on character by 1. This applies before rolling to Critically Hit.)],
+  CriticalDamageUp : strong("Critical DMG +") + [ (Increase the damage dealt by critical hits by 3N.)],
+  InstantCrit : strong("Instant Crit") + [ ([Gain Poise] and [Increase Critical] from other Effects and this Skill are applied before rolling to Critically Hit)],
   Delay: strong("Delay"),
   Unlock: strong("Unlock"),
   Shin: strong("Shin (心)"),
@@ -155,6 +175,8 @@
   Reposition: emph("Reposition") + [ (Once per combat, you may move up to N SQRs without provoking Opportunity Attacks. This movement can be spread across multiple instances.)],
   Momentum: emph("Momentum") + [ (If you do a Melee Attack after moving 3 squares in a straight line, on Clash Win you do +N HP Damage for each square moved after the third. (Max. 20 overall HP Damage))],
   CavalryCharge: emph("Cavalry Charge") + [ (If you do a Melee Attack Action immediately after moving 3 or more Squares in a straight line, the enemy clash is rolled with Disadvantage.)],
+  BloodCycler: strong("Blood Cycler") + [ (Whenever a character within 3 SQRs of the character (not self) procs an instance of Bleed, recover 2 HP.)],
+  BleedVigor: strong("Bleed Vigor") + [ (Gain 1 Offensive Dice Power Up for every 2 Bleed the character has at the moment of attack. (Max of 3 Dice Power Up))],
 )
 
 #let WeaponEffectDesc(effects) = {

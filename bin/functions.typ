@@ -1,5 +1,12 @@
 /// General functions
 
+#let getCharacterStat(character, stat) = {
+  if (stat in character) {
+    return character.at(stat)
+  }
+  return "Data not found"
+}
+
 #let bullet(header, body) = {
   [*#header*] + " - " + [#body]
 }

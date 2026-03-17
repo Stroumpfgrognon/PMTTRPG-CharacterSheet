@@ -237,5 +237,5 @@
 
 #let EgoTextNameplate(input) = {
   set align(center + horizon)
-  block(align(horizon+center,text(size:25pt,weight:"black",input)),height: 70pt,width:38%)
+  block(align(horizon+center,text(size:25pt,weight:"black",input)),height: 70pt,width:40%)
 }
