@@ -87,7 +87,7 @@
     #place(dx: combatLeft + 1 * combatDx, dy: combatTop + 0 * combatDy, ArmorStat(character.at("slashST")))
     #place(dx: combatLeft + 1 * combatDx, dy: combatTop + 1 * combatDy, ArmorStat(character.at("pierceST")))
     #place(dx: combatLeft + 1 * combatDx, dy: combatTop + 2 * combatDy, ArmorStat(character.at("bluntST")))
-    #place(dx: 33pt, dy: 573pt, ArmorEffects(character.at("effects")))
+    #place(dx: 32pt, dy: 573pt, ArmorEffects(character.at("effects")))
 
     #let weaponsLeft = 235pt
     #let weaponsTop = 429pt
@@ -131,10 +131,10 @@
       for i in range(character.ego.skills.len()) {
         let skill = character.ego.skills.at(i)
         let placeLeft = egoLeft
-        let placeTop = egoSkillTop + 118.5pt * i
-        if calc.floor(i / 3) == 1 {
+        let placeTop = egoSkillTop + 118.5pt * calc.quo(i,2)
+        if calc.rem(i, 2) == 1 {
           placeLeft = egoLeft + 128pt
-          placeTop = egoSkillTop + 119pt * (i - 3)
+          placeTop = egoSkillTop + 119pt * (calc.quo(i,2)+1) - 119pt
         }
         place(dx: placeLeft, dy: placeTop, EGOSkillName(skill.name))
         place(dx: placeLeft + 86.5pt, dy: placeTop, EGOSkillCost(skill.cost))

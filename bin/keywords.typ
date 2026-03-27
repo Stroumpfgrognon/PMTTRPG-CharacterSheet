@@ -61,17 +61,25 @@
   Disarm: strong("Disarm"),
   Paralysis: strong("Paralysis"),
   Fragile: strong("Fragile"),
+  StaggerFragile: strong("Stagger Fragile"),
   Light: strong("Light"),
   DeathriteHaste: strong("Deathrite[Haste]"),
   DeathriteFissure: strong("Deathrite[Fissure]"),
   StriderMao: strong("Strider[Mao]"),
   DeepChill: strong("Deep Chill"),
   Resilience: strong("Resilience"),
+  Resistance: strong("Resistance"),
 )
 
 #let SPECIAL = (
+  RegenHP: strong("Regen HP"),
+  RegenSP: strong("Regen SP"),
+  RegenST: strong("Regen ST"),
   PaddedClothing : strong("Padded Clothing") + [ (When Combat begins, gain 3N Temporary HP)],
+  DamageResistance : strong("Damage Resistance") + [ (Reduce HP Damage and Stagger Damage taken from Attack by N (Max 3))],
+  ComfyClothes : strong("Comfy Clothes") + [ (Gain +N to your Initiative Roll)],
   AdditionalBlock : strong("Additional Block"),
+  AdditionalReaction : strong("Additional Reaction"),
   ExtraDamageType: strong("Extra Damage Type"),
   DarkFlame: strong("Dark Flame"),
   BrokenHeart: strong("Broken Heart"),
@@ -100,7 +108,6 @@
   LoweredGuard: strong("Lowered Guard"),
   SingleStrike: strong("Single Strike"),
   OvercomingCrisis: strong("Overcoming Crisis"),
-  DamageResistance: strong("Damage Resistance"),
   FashionableThreads: strong("Fashionable threads") + [ (Gain 2N Temporary SP on combat start)],
   MultiHit: strong("Multi-Hit")
     + [ (The Attack is replaced with N+1 Attacks with a -2 penalty to all Dice Power of the attacks.
@@ -144,7 +151,7 @@
 )
 
 #let WEAPON = (
-  MeleeShort: emph[[M] Short],
+  MeleeSmall: emph[[M] Small],
   MeleeMedium: emph[[M] Medium],
   MeleeLong: emph[[M] Long],
   MeleeSturdy: emph[[M] Sturdy],
@@ -189,7 +196,7 @@
     }
     let effect = effects.at(i)
     let desc = ""
-    if (effect == WEAPON.MeleeShort) {
+    if (effect == WEAPON.MeleeSmall) {
       desc = "+1 Counter Reaction you must do with this weapon (stackable)"
     } else if (effect == WEAPON.MeleeMedium) {
       desc = "+2 Dice Max"

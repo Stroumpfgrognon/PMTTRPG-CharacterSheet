@@ -43,7 +43,7 @@
 }
 
 #let ArmorEffects(body) = {
-  block(width: 25%, height: 12%, resize-text(body))
+  block(width: 26%, height: 12.5%, resize-text(body),)
 }
 
 #let ArmorStat(body) = {

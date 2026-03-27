@@ -24,7 +24,7 @@
 
   weapons: ( (
     name: [Sweeper Scythe], power: [D10],
-    effects: [#WeaponEffectDesc((WEAPON.OffensiveOne,WEAPON.MeleeShort,ATKTYPE.Pierce))
+    effects: [#WeaponEffectDesc((WEAPON.OffensiveOne,WEAPON.MeleeSmall,ATKTYPE.Pierce))
     - #Hit(Inflict(EFFECTS.Bleed,3))
     ],),),
 
