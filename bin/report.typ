@@ -1,6 +1,6 @@
 // This file defines the report template and places the data on the sheet background image
 
-#let report(sheet, character, ego-unlocked, auto-calculate-stats) = {
+#let report(sheet, character, ego-unlocked, auto-calculate-stats, prioritize-written-stats) = {
   [
     #import "elements.typ": *
 
@@ -52,13 +52,27 @@
       if (type(statsum) == int) {
         rank = calc.floor(statsum / 6)
         level = statsum / 2 - 3
-        health = 64 + (character.fortitude * 8) + rank * 32
-        stagger = 20 + (character.charm * 4) + rank * 4
-        sanity = 15 + (character.prudence * 3)
-        light = 3 + rank
-        atkp = rank
-        defp = character.temperance
-        dodgp = character.insight
+        if (not prioritize-written-stats or not is_in_dict("health", character)) {
+          health = 64 + (character.fortitude * 8) + rank * 32
+        }
+        if (not prioritize-written-stats or not is_in_dict("stagger", character)) {
+          stagger = 20 + (character.charm * 4) + rank * 4
+        }
+        if (not prioritize-written-stats or not is_in_dict("Sanity", character)) {
+          sanity = 15 + (character.prudence * 3)
+        }
+        if (not prioritize-written-stats or not is_in_dict("Light", character)) {
+          light = 3 + rank
+        }
+        if (not prioritize-written-stats or not is_in_dict("atkp", character)) {
+          atkp = rank
+        }
+        if (not prioritize-written-stats or not is_in_dict("defp", character)) {
+          defp = character.temperance
+        }
+        if (not prioritize-written-stats or not is_in_dict("dodgp", character)) {
+          dodgp = character.insight
+        }
         if (rank >= 6) {
           rank = "EX"
         }
@@ -131,10 +145,10 @@
       for i in range(character.ego.skills.len()) {
         let skill = character.ego.skills.at(i)
         let placeLeft = egoLeft
-        let placeTop = egoSkillTop + 118.5pt * calc.quo(i,2)
+        let placeTop = egoSkillTop + 118.5pt * calc.quo(i, 2)
         if calc.rem(i, 2) == 1 {
           placeLeft = egoLeft + 128pt
-          placeTop = egoSkillTop + 119pt * (calc.quo(i,2)+1) - 119pt
+          placeTop = egoSkillTop + 119pt * (calc.quo(i, 2) + 1) - 119pt
         }
         place(dx: placeLeft, dy: placeTop, EGOSkillName(skill.name))
         place(dx: placeLeft + 86.5pt, dy: placeTop, EGOSkillCost(skill.cost))

@@ -8,10 +8,7 @@
   workHistory: [???],
   rank:        [1],
 
-  health:  [], atkp:  [],
-  stagger: [], defp:  [],
-  Sanity:  [], dodgp: [],
-  Light:   [], level: [],
+  stagger: 25,
 
   fortitude: 1, prudence: 1, justice:    3,
   charm:     1, insight:  1, temperance: 3,
@@ -57,10 +54,9 @@
   workHistory: [Child of Thevillagewithnoname],
   rank:        [EX],
 
-  health:  [200], atkp:  7,
-  stagger: [56], defp:  7,
-  Sanity:  [30], dodgp: 5,
-  Light:   [9], level: 17,
+  health:  [200], 
+  stagger: [56], 
+  Sanity:  [30],
 
   fortitude: 6, prudence: 3, justice:    6,
   charm:     4, insight:  3, temperance: 4,
