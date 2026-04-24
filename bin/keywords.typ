@@ -119,7 +119,9 @@
   Instant: strong("Instant"),
   LoweredGuard: strong("Lowered Guard"),
   SingleStrike: strong("Single Strike"),
-  OvercomingCrisis: strong("Overcoming Crisis"),
+  OvercomingCrisis: strong("Overcoming Crisis") + [(When HP is less than or equal to [100 - N*20]%, increase the Dice Power by N (Max 4))],
+  OvercomingMadness: strong("Overcoming Madness") + [(When SP is less than or equal to [100 - N*20]%,
+ increase the Dice Power by N (Max 4))],
   FashionableThreads: strong("Fashionable threads") + [ (Gain 2N Temporary SP on combat start)],
   MultiHit: strong("Multi-Hit")
     + [ (The Attack is replaced with N+1 Attacks with a -2 penalty to all Dice Power of the attacks.
@@ -147,6 +149,10 @@
   CriticalDamageUp: strong("Critical DMG +") + [ (Increase the damage dealt by critical hits by 3N.)],
   InstantCrit: strong("Instant Crit")
     + [ ([Gain Poise] and [Increase Critical] from other Effects and this Skill are applied before rolling to Critically Hit)],
+  Throwing: strong("[M] Throwing Weapon") + [ This weapon does not suffer Disadvantage or -2 Penalty from Throwing.],
+  CaptureThem: strong("Capture Them!") + [ (This skill must be used against your Marked target. Apply 2*N Bind and N Paralysis to the target next round.)],
+  PressAdvantage: strong("Press Advantage") + [ (If the Target has Bind, inflict [Type] Fragile to the Target next round equal to half of the stacks of Bind, rounded down. The Type of the Fragile is chosen between: [Blunt, Slash, Pierce] on use.)],
+  BindBonus: strong("Bind Bonus") + [ (If the target has N or more Bind stacks, increase the Dice Power by N)],
   Delay: strong("Delay"),
   Unlock: strong("Unlock"),
   Shin: strong("Shin (心)"),
@@ -154,9 +160,9 @@
 )
 
 #let BODY = (
-  Health: emph("Health"),
-  Stagger: emph("Stagger"),
-  Sanity: emph("Sanity"),
+  Health: emph("Health/HP"),
+  Stagger: emph("Stagger/ST"),
+  Sanity: emph("Sanity/SP"),
   Light: emph("Light"),
   Damage: emph("Damage"),
   StaggerDamage: emph("Stagger Damage"),
@@ -210,6 +216,15 @@
     + [ (Whenever a character within 3 SQRs of the character (not self) procs an instance of Bleed, recover 2 HP.)],
   BleedVigor: strong("Bleed Vigor")
     + [ (Gain 1 Offensive Dice Power Up for every 2 Bleed the character has at the moment of attack. (Max of 3 Dice Power Up))],
+  TargetSubjugation: strong("Target for Subjugation")
+    + [ (As an Action you may Mark 1 Target.
+On Clash Win against your Marked target, deal 2 SP Damage and regen 2 SP. This counts as N source(s) of Mark.)],
+  Turbulence : strong("Turbulence")
+    + [ When taking ST Damage, you may choose an amount of that damage to take as SP Damage instead. This effect cannot be used when in Panic.],
+  DesperateStruggle : strong("Desperate Struggle")
+    + [ During a Clash, the character may consume 5 SP in order to force a reroll of a singular die, taking the new result regardless of value. If rerolling a die from the enemy, additionally spend 1 Reaction. This effect cannot be used when in Panic.],
+  Unstoppable : strong("Unstoppable")
+    + [ (The first time you Panic in combat, you un-Panic and recover all your SP immediately. (Once per combat))],
 )
 
 #let WeaponEffectDesc(effects) = {
