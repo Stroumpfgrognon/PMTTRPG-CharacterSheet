@@ -43,7 +43,7 @@
 }
 
 #let ArmorEffects(body) = {
-  block(width: 26%, height: 12.5%, resize-text(body),)
+  block(width: 26%, height: 12.5%, resize-text(body))
 }
 
 #let ArmorStat(body) = {
@@ -102,7 +102,7 @@
 
 #let EgoPassive(list) = {
   set align(horizon)
-  block(width: 41%, height: 21.5%, column-breaker(15pt, 3, list))
+  block(width: 41%, height: 16.8%, column-breaker(15pt, 3, list))
 }
 
 #let Notes(list) = {
@@ -232,10 +232,11 @@
 }
 
 #let EgoNameplate(src) = {
-  image(src, width: 40%)
+  set align(horizon)
+  block(width: 41.5%, height: 13.5%, figure(image(src, width: 100%)))
 }
 
 #let EgoTextNameplate(input) = {
   set align(center + horizon)
-  block(align(horizon+center,text(size:25pt,weight:"black",input)),height: 70pt,width:40%)
+  block(width: 41.5%, height: 13.5%, text(size: 25pt, weight: "black", input))
 }

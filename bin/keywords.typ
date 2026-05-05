@@ -75,6 +75,8 @@
   RegenHP: strong("Regen HP"),
   RegenSP: strong("Regen SP"),
   RegenST: strong("Regen ST"),
+  EnemyPowerMinus: strong("Enemy Power"),
+  Boosters: strong("Boosters") + [ (When Combat begins, gain 1N Haste.)],
   PaddedClothing: strong("Padded Clothing") + [ (When Combat begins, gain 3N Temporary HP)],
   DamageResistance: strong("Damage Resistance")
     + [ (Reduce HP Damage and Stagger Damage taken from Attack by N (Max 3))],
@@ -147,6 +149,7 @@
   CriticalConversion: strong("Critical Conversion")
     + [ (If the character would have 10 Poise as a result of this clash, reduce Poise to 1 and increase Critical on character by 1. This applies before rolling to Critically Hit.)],
   CriticalDamageUp: strong("Critical DMG +") + [ (Increase the damage dealt by critical hits by 3N.)],
+  Precision : strong("Precision") + [ (Roll another D10 to check if the attack is a Critical Hit.)],
   InstantCrit: strong("Instant Crit")
     + [ ([Gain Poise] and [Increase Critical] from other Effects and this Skill are applied before rolling to Critically Hit)],
   Throwing: strong("[M] Throwing Weapon") + [ This weapon does not suffer Disadvantage or -2 Penalty from Throwing.],
@@ -155,6 +158,10 @@
   BindBonus: strong("Bind Bonus") + [ (If the target has N or more Bind stacks, increase the Dice Power by N)],
   Delay: strong("Delay"),
   Unlock: strong("Unlock"),
+  SenseWeakness: strong("Sense their Weakness") + [ (This skill must be used against your Marked target. Inflict N Ruin to the target and apply N Poise to the character.)],
+  ChallengeAdvantage: strong("Challenge Advantage") + [ (This skill must be used against your Marked target.Inflict N Ruin to the target and apply N Poise to the character.)],
+  SmokeParalysis: strong("Smoke-Paralysis") + [ (Consume N Smoke on the target to inflict N Paralysis on the target next round.)],
+  ExhaleSmoke: strong("Exhale Smoke") + [ (Transfer all already present Smoke stacks from the character to the target. If this skill also contains an effect that consumes Smoke from the target, transferred Smoke may immediately be used for that effect. Any smoke inflicted from this specific effect may go over the cap of 10. Incompatible with Inhale Smoke.)],
   Shin: strong("Shin (心)"),
   Mang: strong("Mang (望)"),
 )
@@ -174,6 +181,7 @@
   Block: text(fill: rgb(0, 128, 0), emph("Block skill")),
   Dodge: text(fill: blue, emph("Dodge skill")),
   OnPlay: text(fill: purple, emph("On Play skill")),
+  EGOweapon: text(fill: orange, emph("E.G.O Weapon")),
 )
 
 #let WEAPON = (
@@ -225,6 +233,12 @@ On Clash Win against your Marked target, deal 2 SP Damage and regen 2 SP. This c
     + [ During a Clash, the character may consume 5 SP in order to force a reroll of a singular die, taking the new result regardless of value. If rerolling a die from the enemy, additionally spend 1 Reaction. This effect cannot be used when in Panic.],
   Unstoppable : strong("Unstoppable")
     + [ (The first time you Panic in combat, you un-Panic and recover all your SP immediately. (Once per combat))],
+    ActivateStrength : strong("Activate Strength") + [ (At the start of the round, apply 1 Strength to the character for every 25% of Max HP lost. (Max of 3 Strength))],
+    LoneFighter : strong("Lone Fighter") + [ (Gain N Dice power during a [Offensive/Defensive Clash] against an enemy within melee weapon range that has not had an Action taken against them during this round or the previous round by any of this character’s allies (Max 3). Type chosen at effect acquisition. This Effect can't be activated if there are any allies within 2 SQRs of the character.)],
+    HeightenedPresence : strong("Heightened Presence") + [ (You count as [Rank+1] for purposes of SP gain/loss.)],
+    SmokeOverflow: strong("Smoke Overflow") + [ (If the character has 4+4*N or more Smoke stacks, the character gains N Dice Power Up on attack/defense. Type chosen at effect acquisition. (Max 3)
+The character's Smoke cap is raised to 8+4*N. 
+The increased Smoke cap gained from this does not count as being above 10 for the purposes of any other Effects for the user.)],
 )
 
 #let WeaponEffectDesc(effects) = {

@@ -138,9 +138,9 @@
     #if egoVersion {
       let egoTitleTop = 26pt
       let egoLeft = 319pt
-      let egoPassiveTop = 105pt
+      let egoPassiveTop = 147pt
       let egoSkillTop = 298pt
-      place(dx: egoLeft + 2pt, dy: egoTitleTop, character.ego.nameplate)
+      place(dx: egoLeft -2pt, dy: egoTitleTop, character.ego.nameplate)
       place(dx: egoLeft, dy: egoPassiveTop, EgoPassive(character.ego.passives))
       for i in range(character.ego.skills.len()) {
         let skill = character.ego.skills.at(i)
