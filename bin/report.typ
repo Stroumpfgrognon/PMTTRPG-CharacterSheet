@@ -8,7 +8,7 @@
 
     #set page(margin: 0cm)
     #set text(size: 15pt)
-    #set page(background: image(source + "report_recto.png"))
+    #set page(background: image(source + "report_front.png"))
     #let backgroundTop = 77.5pt
     #let rank = getCharacterStat(character, "rank")
     #place(dx: 32pt, dy: backgroundTop, Name(getCharacterStat(character, "name")))
@@ -133,7 +133,7 @@
       verso = ".png"
     }
 
-    #set page(background: image(source + "report_verso" + verso))
+    #set page(background: image(source + "report_back" + verso))
 
     #if egoVersion {
       let egoTitleTop = 26pt
