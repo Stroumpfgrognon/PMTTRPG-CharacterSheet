@@ -49,6 +49,8 @@
   Normal: [#strong("Rupture"), #strong("Bleed"), #strong("Burn"), #strong("Tremor")],
   Charge: strong("Charge"),
   Poise: strong("Poise"),
+  Critical: strong("Critical"),
+  Ruin: strong("Ruin"),
   Sinking: strong("Sinking"),
   Haste: strong("Haste"),
   Bind: strong("Bind"),
@@ -62,12 +64,14 @@
   Paralysis: strong("Paralysis"),
   Fragile: strong("Fragile"),
   StaggerFragile: strong("Stagger Fragile"),
+  Protection: strong("Protection"),
+  StaggerProtection: strong("Stagger Protection"),
   Light: strong("Light"),
   DeathriteHaste: strong("Deathrite[Haste]"),
   DeathriteFissure: strong("Deathrite[Fissure]"),
   StriderMao: strong("Strider[Mao]"),
   DeepChill: strong("Deep Chill"),
-  Resilience: strong("Resilience"),
+  Resilience: strong("Resilifence"),
   Resistance: strong("Resistance"),
 )
 
@@ -75,6 +79,11 @@
   RegenHP: strong("Regen HP"),
   RegenSP: strong("Regen SP"),
   RegenST: strong("Regen ST"),
+  Ruination : strong("Ruination") + [ (Roll another D10 to check if the attack is a Devastating Hit.)],
+  Debilitate: strong("Debilitate") + [ (On Devastating Hit, Apply N Feeble, Disarm, and 2*N Bind to the target next Round.)],
+  BrandingStrike: strong("Branding Strike") + [ (Mark the target with one of your available Marks.)],
+  TargetShift: strong("Target Shift")
+    + [ (Your Mark is transferred from its current target to another of your choice.)],
   EnemyPowerMinus: strong("Enemy Power"),
   Boosters: strong("Boosters") + [ (When Combat begins, gain 1N Haste.)],
   PaddedClothing: strong("Padded Clothing") + [ (When Combat begins, gain 3N Temporary HP)],
@@ -112,18 +121,25 @@
       )],
   SinkingBonus: strong("Sinking Bonus") + [ (If the target has [3+N] or more Sinking stacks, increase Dice Power by N)],
   SinkingPlus: strong("Sinking+"),
-  GoadingStrike: strong("Goading Strike") + [ (On Sinking Burst, if the target panics as a result of this Attack, on selecting the Panic type to inflict upgrade it to its Goaded version. If the target is Panicking already, upgrade it to Goaded. This effect ignores Altered Psyche.)],
+  GoadingStrike: strong("Goading Strike")
+    + [ (On Sinking Burst, if the target panics as a result of this Attack, on selecting the Panic type to inflict upgrade it to its Goaded version. If the target is Panicking already, upgrade it to Goaded. This effect ignores Altered Psyche.)],
   TransferSinking: strong("Transfer Sinking"),
   AbsorbSinking: strong("Absorb Sinking"),
   FrostbitePlus: strong("Frostbite+"),
   Overspeed: strong("Overspeed"),
-  AfterEffect: strong("After Effect"),
+  AfterEffect: strong("After Effect") + [ : (Your next N rolls are made with disadvantage (Challenge/Combat))],
   Instant: strong("Instant"),
   LoweredGuard: strong("Lowered Guard"),
-  SingleStrike: strong("Single Strike"),
-  OvercomingCrisis: strong("Overcoming Crisis") + [(When HP is less than or equal to [100 - N*20]%, increase the Dice Power by N (Max 4))],
-  OvercomingMadness: strong("Overcoming Madness") + [(When SP is less than or equal to [100 - N*20]%,
- increase the Dice Power by N (Max 4))],
+  SingleStrike: strong("Single Strike")
+    + [ : (Increase the Dice Power by the amount of your Reactions.
+      [Min. 2 Power, Max. 6 Power.]
+      The character forfeits all of their Reactions for this Turn. This skill can’t be used if the character has already used a Reaction this turn (or is using a Reaction to make this attack, such as through dual-wielding or Counter.).
+      Skills containing this effect can only be used with the [Attack] Action.)],
+  OvercomingCrisis: strong("Overcoming Crisis")
+    + [(When HP is less than or equal to [100 - N*20]%, increase the Dice Power by N (Max 4))],
+  OvercomingMadness: strong("Overcoming Madness")
+    + [(When SP is less than or equal to [100 - N*20]%,
+      increase the Dice Power by N (Max 4))],
   FashionableThreads: strong("Fashionable threads") + [ (Gain 2N Temporary SP on combat start)],
   MultiHit: strong("Multi-Hit")
     + [ (The Attack is replaced with N+1 Attacks with a -2 penalty to all Dice Power of the attacks.
@@ -145,23 +161,34 @@
     + [ (On Clash Win, do not Tremor Burst, and consider all currently active Tremor as instead applying next Round. It is no longer active for the given Round.)],
   SlipPast: strong("Slip Past")
     + [ (Swap places with the target. This movement does not provoke Opportunity Attacks for either the character or the target.)],
+  Showdown: strong("Showdown")
+    + [ (If the target has Poise, remove their Poise and add it to your own before rolling to Critically Hit.)],
   IncreaseCritical: strong("Increase Critical"),
+  IncreaseDevastation: strong("Increase Devastation"),
   CriticalConversion: strong("Critical Conversion")
     + [ (If the character would have 10 Poise as a result of this clash, reduce Poise to 1 and increase Critical on character by 1. This applies before rolling to Critically Hit.)],
   CriticalDamageUp: strong("Critical DMG +") + [ (Increase the damage dealt by critical hits by 3N.)],
-  Precision : strong("Precision") + [ (Roll another D10 to check if the attack is a Critical Hit.)],
+  Precision: strong("Precision") + [ (Roll another D10 to check if the attack is a Critical Hit.)],
   InstantCrit: strong("Instant Crit")
     + [ ([Gain Poise] and [Increase Critical] from other Effects and this Skill are applied before rolling to Critically Hit)],
   Throwing: strong("[M] Throwing Weapon") + [ This weapon does not suffer Disadvantage or -2 Penalty from Throwing.],
-  CaptureThem: strong("Capture Them!") + [ (This skill must be used against your Marked target. Apply 2*N Bind and N Paralysis to the target next round.)],
-  PressAdvantage: strong("Press Advantage") + [ (If the Target has Bind, inflict [Type] Fragile to the Target next round equal to half of the stacks of Bind, rounded down. The Type of the Fragile is chosen between: [Blunt, Slash, Pierce] on use.)],
+  CaptureThem: strong("Capture Them!")
+    + [ (This skill must be used against your Marked target. Apply 2*N Bind and N Paralysis to the target next round.)],
+  WeakenYourQuarry: strong("Weaken Your Quarry")
+    + [ (This skill must be used against your Marked target. Apply N Feeble and N Disarm to the target next round.)],
+  PressAdvantage: strong("Press Advantage")
+    + [ (If the Target has Bind, inflict [Type] Fragile to the Target next round equal to half of the stacks of Bind, rounded down. The Type of the Fragile is chosen between: [Blunt, Slash, Pierce] on use.)],
   BindBonus: strong("Bind Bonus") + [ (If the target has N or more Bind stacks, increase the Dice Power by N)],
   Delay: strong("Delay"),
   Unlock: strong("Unlock"),
-  SenseWeakness: strong("Sense their Weakness") + [ (This skill must be used against your Marked target. Inflict N Ruin to the target and apply N Poise to the character.)],
-  ChallengeAdvantage: strong("Challenge Advantage") + [ (This skill must be used against your Marked target.Inflict N Ruin to the target and apply N Poise to the character.)],
-  SmokeParalysis: strong("Smoke-Paralysis") + [ (Consume N Smoke on the target to inflict N Paralysis on the target next round.)],
-  ExhaleSmoke: strong("Exhale Smoke") + [ (Transfer all already present Smoke stacks from the character to the target. If this skill also contains an effect that consumes Smoke from the target, transferred Smoke may immediately be used for that effect. Any smoke inflicted from this specific effect may go over the cap of 10. Incompatible with Inhale Smoke.)],
+  SenseWeakness: strong("Sense their Weakness")
+    + [ (This skill must be used against your Marked target. Inflict N Ruin to the target and apply N Poise to the character.)],
+  ChallengeAdvantage: strong("Challenge Advantage")
+    + [ (This skill must be used against your Marked target.Inflict N Ruin to the target and apply N Poise to the character.)],
+  SmokeParalysis: strong("Smoke-Paralysis")
+    + [ (Consume N Smoke on the target to inflict N Paralysis on the target next round.)],
+  ExhaleSmoke: strong("Exhale Smoke")
+    + [ (Transfer all already present Smoke stacks from the character to the target. If this skill also contains an effect that consumes Smoke from the target, transferred Smoke may immediately be used for that effect. Any smoke inflicted from this specific effect may go over the cap of 10. Incompatible with Inhale Smoke.)],
   Shin: strong("Shin (心)"),
   Mang: strong("Mang (望)"),
 )
@@ -178,10 +205,11 @@
 
 #let SKILL = (
   Offensive: text(fill: red, emph("Offensive skill")),
-  Block: text(fill: rgb(0, 128, 0), emph("Block skill")),
-  Dodge: text(fill: blue, emph("Dodge skill")),
-  OnPlay: text(fill: purple, emph("On Play skill")),
+  Block: text(fill: blue, emph("Block skill")),
+  Dodge: text(fill: rgb(0, 128, 0), emph("Dodge skill")),
   EGOweapon: text(fill: orange, emph("E.G.O Weapon")),
+  Action: text(fill: purple, emph("Action Skill")),
+  OnPlay: text(fill: purple, emph("On Play skill")),
 )
 
 #let WEAPON = (
@@ -205,9 +233,10 @@
 )
 
 #let AMMO = (
-  Burning: [#emph("Flame Ammunition") : #ClashW(Inflict(EFFECTS.Burn, 2))],
-  Frost: [#emph("Frost Bullets") : #ClashW(Inflict((EFFECTS.Paralysis, 2), (EFFECTS.Disarm, 2)))],
-  ArmorPiercing: [#emph("Armor Piercing Bullets") : Enemy Power -1],
+  Burning: [#emph("Flame Ammunition") (#ClashW(Inflict(EFFECTS.Burn, 2)))],
+  Frost: [#emph("Frost Bullets") (#ClashW(Inflict(EFFECTS.Disarm, 1)))],
+  ArmorPiercing: [#emph("Armor Piercing Bullets") (#ClashW[Enemy Power -1])],
+  WhaleBone: [#emph("Whale Bone Ammunition") (#ClashW(Inflict(EFFECTS.Paralysis, 1)))],
 )
 
 
@@ -226,19 +255,48 @@
     + [ (Gain 1 Offensive Dice Power Up for every 2 Bleed the character has at the moment of attack. (Max of 3 Dice Power Up))],
   TargetSubjugation: strong("Target for Subjugation")
     + [ (As an Action you may Mark 1 Target.
-On Clash Win against your Marked target, deal 2 SP Damage and regen 2 SP. This counts as N source(s) of Mark.)],
-  Turbulence : strong("Turbulence")
+      On Clash Win against your Marked target, deal 2 SP Damage and regen 2 SP. This counts as N source(s) of Mark.)],
+  TargetAssasination: strong("Target for Assasination")
+    + [ (As an Action you may Mark 1 Target.
+      On Hit against your Marked Target, deal 3 extra HP Damage [After Resistance]. This additional damage applies once more for effects of Rupture and Tremor Burst, as well as Critical and Devastating Hits, additively per effect.
+      This counts as N source(s) of Mark.)],
+  Turbulence: strong("Turbulence")
     + [ When taking ST Damage, you may choose an amount of that damage to take as SP Damage instead. This effect cannot be used when in Panic.],
-  DesperateStruggle : strong("Desperate Struggle")
+  DesperateStruggle: strong("Desperate Struggle")
     + [ During a Clash, the character may consume 5 SP in order to force a reroll of a singular die, taking the new result regardless of value. If rerolling a die from the enemy, additionally spend 1 Reaction. This effect cannot be used when in Panic.],
-  Unstoppable : strong("Unstoppable")
+  Unstoppable: strong("Unstoppable")
     + [ (The first time you Panic in combat, you un-Panic and recover all your SP immediately. (Once per combat))],
-    ActivateStrength : strong("Activate Strength") + [ (At the start of the round, apply 1 Strength to the character for every 25% of Max HP lost. (Max of 3 Strength))],
-    LoneFighter : strong("Lone Fighter") + [ (Gain N Dice power during a [Offensive/Defensive Clash] against an enemy within melee weapon range that has not had an Action taken against them during this round or the previous round by any of this character’s allies (Max 3). Type chosen at effect acquisition. This Effect can't be activated if there are any allies within 2 SQRs of the character.)],
-    HeightenedPresence : strong("Heightened Presence") + [ (You count as [Rank+1] for purposes of SP gain/loss.)],
-    SmokeOverflow: strong("Smoke Overflow") + [ (If the character has 4+4*N or more Smoke stacks, the character gains N Dice Power Up on attack/defense. Type chosen at effect acquisition. (Max 3)
-The character's Smoke cap is raised to 8+4*N. 
-The increased Smoke cap gained from this does not count as being above 10 for the purposes of any other Effects for the user.)],
+  ActivateStrength: strong("Activate Strength")
+    + [ (At the start of the round, apply 1 Strength to the character for every 25% of Max HP lost. (Max of 3 Strength))],
+  LoneFighter: strong("Lone Fighter")
+    + [ (Gain N Dice power during a [Offensive/Defensive Clash] against an enemy within melee weapon range that has not had an Action taken against them during this round or the previous round by any of this character’s allies (Max 3). Type chosen at effect acquisition. This Effect can't be activated if there are any allies within 2 SQRs of the character.)],
+  HeightenedPresence: strong("Heightened Presence") + [ (You count as [Rank+1] for purposes of SP gain/loss.)],
+  SmokeOverflow: strong("Smoke Overflow")
+    + [ (If the character has 4+4*N or more Smoke stacks, the character gains N Dice Power Up on attack/defense. Type chosen at effect acquisition. (Max 3)
+      The character's Smoke cap is raised to 8+4*N.
+      The increased Smoke cap gained from this does not count as being above 10 for the purposes of any other Effects for the user.)],
+  WeaponSheaths: strong("Weapon Sheaths")
+    + [ (When you Successfully Attack/Counter you may switch the weapon you used with a weapon which is already in a sheath. You cannot switch to a weapon you do not have the hands to wield with on swap (Dual Wield 1H to 2H).
+      You gain a number of Sheaths equal to N
+      )],
+  PoiseBonus: strong("Poise Bonus")
+    + [ (If the character has 4 or more Poise, gain 1 Dice Power Up. Type chosen at effect acquisition.)],
+  RuinBonus: strong("Ruin Bonus")
+    + [ (If the target has 4 or more Ruin, gain 1 Dice Power Up. Type chosen at effect acquisition.)],
+  SlayerStance: strong("Slayer Stance")
+    + [ (By spending 1 Reaction you may activate/swap to this Stance.
+      [On Crit] with this Stance active, roll your Critical damage twice, then take the higher result.
+      )],
+  Indomitable: strong("Indomitable")
+    + [ (The first time you become Staggered in combat, you recover all your Stagger immediately. (Once per combat))],
+  SiphonLuck: strong("Siphon Luck")
+    + [ (On Clash Win with Attack/Counter, transfer up to N already present stacks of Poise from self to the target OR from target to self.)],
+    SiphonCurse: strong("Siphon Curse") + [ (On Clash Win with Attack/Counter, transfer up to N already present stacks of Ruin from self to the target OR from target to self.)]
+)
+
+#let ACTION = (
+  ChallengeAdvantage: strong("Challenge Advantage") + [ (Gain Advantage to your Challenge Roll)],
+  ChallengePowerUp: strong("Challenge Power-Up") + [ (Gain a modifier of +N to your Challenge Roll)],
 )
 
 #let WeaponEffectDesc(effects) = {
