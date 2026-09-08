@@ -22,7 +22,7 @@
   weapons: ( (
     name: [Sweeper Scythe], power: [D10],
     effects: [#WeaponEffectDesc((WEAPON.OffensiveOne,WEAPON.MeleeSmall,ATKTYPE.Pierce))
-    - #Hit(Inflict(EFFECTS.Bleed,3))
+    - #Hit(Inflict(STATUS.Bleed,3))
     ],),),
 
   inventory: (),
@@ -30,12 +30,12 @@
   skills: ( (
     name: [Sweep the Backstreets], cost: [1],
     effects: [#SKILL.Offensive
-      - #Hit(Inflict(EFFECTS.Paralysis,2))
+      - #Hit(Inflict(STATUS.Paralysis,2))
     - #Hit(Recover(BODY.Health,2))]
   ), (
     name: [Resilience], cost: [2],
     effects: [#SKILL.Block
-    - #Use(Gain(EFFECTS.Resilience,4))]
+    - #Use(Gain(STATUS.Resilience,4))]
   ), (
     name: [More fuel], cost: [1],
     effects: [#SKILL.Dodge
@@ -65,8 +65,8 @@
   slashHP: 1.5, slashST: 1.5,
   pierceHP: 1, pierceST: 1,
   bluntHP: 0.5, bluntST: 0.5,
-  effects: [- #ClashL(Inflict(EFFECTS.Bleed,5)) to self
-  - #ClashW(Inflict(EFFECTS.Bleed,5))
+  effects: [- #ClashL(Inflict(STATUS.Bleed,5)) to self
+  - #ClashW(Inflict(STATUS.Bleed,5))
   - #SPECIAL.BleedResistance 3],
 
   weapons: ( (
@@ -75,8 +75,8 @@
     - A metamorph weapon, able to change damage type depending on the skill used but not at will
     - #ROLL.DiceMax +2
     - #SPECIAL.DoubleEdged
-    - #ClashL(Inflict(EFFECTS.Bleed,5)) on self
-    - #ClashW(Inflict(EFFECTS.Bleed,5))
+    - #ClashL(Inflict(STATUS.Bleed,5)) on self
+    - #ClashW(Inflict(STATUS.Bleed,5))
     ],
   ),),
 

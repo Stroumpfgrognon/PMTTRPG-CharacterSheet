@@ -1,6 +1,7 @@
 #import "elements.typ": *
+#import "effects.typ": *
 
-#let WEAPONS = (
+#let WEAPONTYPES = (
   Melee: emph("Melee"),
   Ranged: emph("Ranged"),
   Magic: emph("Magic"),
@@ -18,7 +19,7 @@
   Defensive: emph("Defensive"),
 )
 
-#let ARMOR = (
+#let ARMORTYPE = (
   Armored: [#emph("Armored") : +1 to Block Dice Power. On Clash Win with Block, deal half of the roll OR the difference between rolls as Stagger Damage to the opponent, whichever is greater.],
   Swift: [#emph("Swift") : +1 to Evade Dice Power. On Clash Win with Evade, your Recycled Evade penalty only increments in values of -1, instead of -2.],
   Balanced: [#emph("Balanced") : +2 EP, +1 Maximum Light for the Character],
@@ -38,7 +39,7 @@
   DicePower: strong("Dice Power"),
 )
 
-#let EFFECTS = (
+#let STATUS = (
   Rupture: strong("Rupture"),
   Bleed: strong("Bleed"),
   Burn: strong("Burn"),
@@ -233,10 +234,10 @@
 )
 
 #let AMMO = (
-  Burning: [#emph("Flame Ammunition") (#ClashW(Inflict(EFFECTS.Burn, 2)))],
-  Frost: [#emph("Frost Bullets") (#ClashW(Inflict(EFFECTS.Disarm, 1)))],
+  Burning: [#emph("Flame Ammunition") (#ClashW(Inflict(STATUS.Burn, 2)))],
+  Frost: [#emph("Frost Bullets") (#ClashW(Inflict(STATUS.Disarm, 1)))],
   ArmorPiercing: [#emph("Armor Piercing Bullets") (#ClashW[Enemy Power -1])],
-  WhaleBone: [#emph("Whale Bone Ammunition") (#ClashW(Inflict(EFFECTS.Paralysis, 1)))],
+  WhaleBone: [#emph("Whale Bone Ammunition") (#ClashW(Inflict(STATUS.Paralysis, 1)))],
 )
 
 
@@ -351,4 +352,19 @@
     res = res + [#effect]
   }
   res + descs
+}
+
+#let writeEffect(effect, potency:0, writeDesc: true, condition: none ) = {
+  let res = [#effect.title #potency]
+  if(writeDesc) {
+    if(potency>=0) {
+      res = res + [ (_#(effect.pos)(potency)_)]
+    } else {
+      res = res + [ (_#(effect.neg)(potency)_)]
+    }
+  }
+  if(condition!=none) {
+    res = condition(res)
+  }
+  return res;
 }
